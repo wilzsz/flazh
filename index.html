@@ -6436,7 +6436,20 @@ function countsTowardDaily() {
   } catch (e) { return false; }
 }
 
+// ── GERBANG "SUDAH DIPELAJARI" ─────────────────────────────────
+// Kartu SRS (state.learned) HANYA boleh dibuat lewat sesi pengenalan kata:
+// Harian, lanjutan Harian (ULANGI KATA YANG BELUM), Sisa Kemarin, dan
+// flashcard file harian. Latihan bebas (Latihan/Tes Cepat di Kosakata,
+// dsb) hanya boleh mengubah kartu yang SUDAH ada — tidak boleh bikin
+// kartu baru, supaya Review/SRS tidak berisi kata yang belum dipelajari.
+function wvIntroAllowed() {
+  if (window._wvCfIntro === true) return true;
+  if (window._wvCfIntro === false) return false;
+  return !!(session && (session.mode === 'daily' || session.mode === 'repeat' || session.mode === 'carry'));
+}
+
 function recordSrsAnswer(w, knew) {
+  if (w && w.word && !(state.learned && state.learned[w.word]) && !wvIntroAllowed()) return false;
   // Kalau tengah malam lewat SAAT user masih di tengah sesi flashcard
   // (app tidak di-reload), pastikan jawaban ini tercatat untuk hari yang
   // benar — bukan numpuk ke hitungan hari kemarin yang sudah lewat.
@@ -8091,6 +8104,38 @@ function showToast(icon, title, desc) {
 }
 
 try { loadState(); } catch(e) { console.warn('loadState error:', e); }
+// ── PEMBERSIHAN SEKALI JALAN: kartu "siluman" ──────────────────────
+// Versi lama membuat kartu SRS untuk kata yang cuma dilatih lewat
+// flashcard file/Latihan padahal belum pernah dikerjakan di sesi Harian.
+// Aman dibersihkan otomatis HANYA kalau semua aktivitas belajar baru
+// terjadi hari ini (pengguna baru); kartu yang dihapus dicadangkan di
+// state.introFixBackup.
+try {
+  if (state && state.learned && !state.introFixV1) {
+    var _t0 = todayStr();
+    var _lg = state.dailyLog || {};
+    var _days = Object.keys(_lg);
+    var _newUser = _days.length > 0 && _days.every(function(d){ return d === _t0; }) && state.todayDate === _t0;
+    if (_newUser) {
+      var _keep = {};
+      Object.keys(state.todayCountedWords || {}).forEach(function(k){ _keep[k] = 1; });
+      (state.dailySessionWords || []).forEach(function(k){ _keep[k] = 1; });
+      Object.keys(state.dailySessionScoped || {}).forEach(function(k){
+        var e = state.dailySessionScoped[k];
+        if (e && e.date === _t0) (e.words || []).forEach(function(x){ _keep[x] = 1; });
+      });
+      ((state.carryOver && state.carryOver.items) || []).forEach(function(it){ (it.words || []).forEach(function(x){ _keep[x] = 1; }); });
+      var _bk = {}, _n = 0;
+      Object.keys(state.learned).forEach(function(k){
+        if (!_keep[k]) { _bk[k] = state.learned[k]; delete state.learned[k]; _n++; }
+      });
+      if (_n) { state.introFixBackup = _bk; state.introFixRemoved = _n; }
+    }
+    state.introFixV1 = true;
+    saveState();
+  }
+} catch(e) { console.warn('introFix error:', e); }
+setTimeout(function(){ try { if (state.introFixRemoved) { showSimpleToast(state.introFixRemoved + ' kata yang belum dipelajari dikeluarkan dari Review/SRS.'); state.introFixRemoved = 0; saveState(); } } catch(e) {} }, 1500);
 try { syncCustomWordsIntoVocab(); } catch(e) { console.warn('syncCustomWordsIntoVocab error:', e); }
 // Bersihkan localStorage dari fitur yang sudah dihapus
 try { localStorage.removeItem('wilvocab_light_mode'); } catch(e) {}
@@ -8895,7 +8940,7 @@ function startFileFlashcard() {
   // konsisten, bukan dua sesi berbeda untuk file yang sama.
   var picked = getScopedDailySession('file:' + f.id, pool);
   if (!picked.length) { appAlert('Semua kata di file ini sudah hafal! 🎉'); return; }
-  startFlashcardWithWords(picked, f.name);
+  startFlashcardWithWords(picked, f.name, { intro: true });
 }
 
 // ══════════════════════════════════════════════
@@ -10758,12 +10803,16 @@ function deleteCustomWordByWord(word) {
 // ══════════════════════════════════════════════
 var cfSession = { words: [], idx: 0, flipped: false, known: 0, unknown: 0, unknownWords: [] };
 
-function startFlashcardWithWords(wordObjs, title) {
+function startFlashcardWithWords(wordObjs, title, opts) {
   if (!wordObjs || !wordObjs.length) {
     appAlert('Belum ada kata untuk dipelajari di sini.');
     return;
   }
-  cfSession = { words: shuffle(wordObjs.slice()), idx: 0, flipped: false, known: 0, unknown: 0, unknownWords: [] };
+  var _intro = !!(opts && opts.intro);
+  cfSession = { words: shuffle(wordObjs.slice()), idx: 0, flipped: false, known: 0, unknown: 0, unknownWords: [], intro: _intro };
+  if (!_intro && wordObjs.some(function(x){ return x && x.word && !state.learned[x.word]; })) {
+    try { showSimpleToast('Latihan bebas: kata yang belum dipelajari tidak masuk Review/SRS.'); } catch (e) {}
+  }
   var titleEl = document.querySelector('#screenCustomFlash .study-title');
   if (titleEl) titleEl.textContent = (title || 'KATA CUSTOM').toUpperCase();
   cfShowCard();
@@ -10820,7 +10869,8 @@ function cfMark(knew) {
   // Sama seperti flashcard utama: jawaban di sini juga tercatat ke
   // statistik & SRS asli — kalau "Belum", kata ini betulan turun level
   // (bisa jadi kata bandel lagi) persis seperti sesi belajar biasa.
-  recordSrsAnswer(w, knew);
+  window._wvCfIntro = !!cfSession.intro;
+  try { recordSrsAnswer(w, knew); } finally { window._wvCfIntro = null; }
   pulseProgressBar('cfProgressBar', knew);
   if (knew) cfSession.known++;
   else { cfSession.unknown++; cfSession.unknownWords.push(w); }
@@ -14980,6 +15030,7 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
     ['dailyLogByList','masteredLogByList'].forEach(function(k){ var m = state[k] || {}; Object.keys(m).forEach(function(cat){ clean(m[cat]); }); });
   }
   wvAfter('recordSrsAnswer', function(r, __a){
+    if (r === false) return; // jawaban diabaikan (kata belum dipelajari)
     var w = __a[0];
     try {
       var v = (w && typeof vocabFind === 'function') ? vocabFind(w.word) : null;
