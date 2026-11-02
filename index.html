@@ -3431,6 +3431,7 @@ html body .cat-popover-badge{font-size:11px;padding:1px 7px;min-width:20px}
       <div class="brand-logo"><span class="brand-logo-text">flash</span><span class="brand-logo-bolt"><svg viewBox="0 0 24 24" width="1em" height="1em"><path d="M13 2 L4.5 13.5 H11 L10 22 L19.5 10 H13 L14 2 Z" fill="#FFCB3D"/></svg></span></div>
     </div>
     <div style="display:flex;align-items:center;gap:8px"><button id="homeSearchBtn" onclick="wvToggleSearch()" aria-label="Cari kata" style="width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;background:var(--surface);border:var(--border-w-thin) solid var(--border-light);color:var(--text2)"><svg id="homeSearchIcon" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
+        <button id="wvDailyBtn" type="button" onclick="wvOpenDaily()" aria-label="Daftar kosakata harian" title="Daftar kosakata harian" style="width:34px;height:34px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;padding:0;cursor:pointer;background:var(--surface);border:var(--border-w-thin) solid var(--border-light);color:var(--text2)"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h12M8 12h12M8 18h12"/><path d="M3.5 6l.8.8 1.4-1.6M3.5 12l.8.8 1.4-1.6M3.5 18l.8.8 1.4-1.6"/></svg></button>
         <div class="streak-badge" id="streakBadge"><svg class="sb-flame" viewBox="0 0 24 24" width="18" height="18" style="flex-shrink:0;overflow:visible"><defs><linearGradient id="wvFlameG" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FF3B1F"/><stop offset=".55" stop-color="#FF8A1F"/><stop offset="1" stop-color="#FFD23F"/></linearGradient><linearGradient id="wvFlameC" x1="0" y1="1" x2="0" y2="0"><stop offset="0" stop-color="#FFB02E"/><stop offset="1" stop-color="#FFF6C2"/></linearGradient></defs><path d="M12.5 2c.3 2.8-1.8 4.1-3.3 6C7.3 10.4 6 12.6 6 15a6 6 0 0 0 12 0c0-2.7-1.2-4.6-2.6-6.2.4 1.7-.3 3-1.6 3.4-1 .3-2-.4-1.9-1.5.2-2-.2-4.2-1.4-8.7z" fill="url(#wvFlameG)"/><path class="sb-core" transform="translate(12 21) scale(.5) translate(-12 -21)" d="M12.5 2c.3 2.8-1.8 4.1-3.3 6C7.3 10.4 6 12.6 6 15a6 6 0 0 0 12 0c0-2.7-1.2-4.6-2.6-6.2.4 1.7-.3 3-1.6 3.4-1 .3-2-.4-1.9-1.5.2-2-.2-4.2-1.4-8.7z" fill="url(#wvFlameC)"/></svg><span id="streakCount">0</span><span class="sb-unit">HARI</span></div></div>
   </div>
   <div class="home-content">
@@ -15068,6 +15069,352 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
         if (saved[cat] === undefined) delete o[sn.day]; else o[sn.day] = saved[cat];
       });
     });
+  };
+})();
+</script>
+
+<script>
+// ══ DAFTAR KOSAKATA HARIAN v2: ringkasan progres, riwayat, cari, dan salin/bagikan ke Catatan ══
+(function(){
+  'use strict';
+  var KEEP_DAYS = 90, PK = 'wvd_prefs_v1';
+  var ui = { tab: 'today', cat: null, meaning: true, fmt: 'num', q: '' };
+  try { var sp = JSON.parse(localStorage.getItem(PK) || '{}'); if (typeof sp.meaning === 'boolean') ui.meaning = sp.meaning; if (sp.fmt) ui.fmt = sp.fmt; } catch(e){}
+  function savePrefs(){ try { localStorage.setItem(PK, JSON.stringify({ meaning: ui.meaning, fmt: ui.fmt })); } catch(e){} }
+  var $ = function(id){ return document.getElementById(id); };
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+  function dayLog(){ return state.wordDayLog || (state.wordDayLog = {}); }
+  function buzz(n){ try { if (navigator.vibrate) navigator.vibrate(n || 8); } catch(e){} }
+
+  // ── Catat kata yang dijawab tiap hari ──
+  wvAfter('recordSrsAnswer', function(r, a){
+    if (r === false) return;
+    var w = a && a[0]; if (!w || !w.word) return;
+    var v = (typeof vocabFind === 'function') ? vocabFind(w.word) : null;
+    var cat = w.listId || (v && v.listId) || 'kata';
+    var t = todayStr(), L = dayLog(), d = L[t] || (L[t] = {}), arr = d[cat] || (d[cat] = []);
+    if (arr.indexOf(w.word) === -1) {
+      arr.push(w.word);
+      Object.keys(L).forEach(function(k){ try { if (dayDiff(t, k) > KEEP_DAYS) delete L[k]; } catch(e){} });
+      saveState();
+    }
+  });
+
+  function cats(){
+    var all = getAllLists();
+    try { if (typeof isSlangFeatureEnabled === 'function' && !isSlangFeatureEnabled()) all = all.filter(function(l){ return l.id !== 'slang'; }); } catch(e){}
+    return all;
+  }
+  function ymd(s){ var p = s.split('-'); return new Date(+p[0], p[1] - 1, +p[2]); }
+  function dateLong(s){ try { return ymd(s).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); } catch(e){ return s; } }
+  function dateShort(s){ try { return ymd(s).toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short' }); } catch(e){ return s; } }
+
+  function sessionKeys(cat){
+    try { ensureTodayIsFresh(); } catch(e){}
+    var lock = (state.dailySessionLockedScopes || {})[cat], sc = state.dailySessionScoped || {}, e = null;
+    if (lock && sc[lock]) e = sc[lock]; else if (cat !== 'kata') e = sc['list:' + cat];
+    if (e && e.date === todayStr() && e.words && e.words.length) return e.words.slice();
+    if (cat === 'kata' && state.todayDate === todayStr() && state.dailySessionWords && state.dailySessionWords.length) return state.dailySessionWords.slice();
+    return [];
+  }
+  function doneToday(){ return ((dayLog()[todayStr()] || {})[ui.cat]) || []; }
+  function mastered(k){ try { return isWordMastered(k); } catch(e){ return false; } }
+  function info(k){ var v = (typeof vocabFind === 'function') ? vocabFind(k) : null; v = v || {}; return { word: v.word || k, meaning: v.meaning || '', pron: v.pronunciation || '', pos: (v.pos && window.WV_POS && WV_POS[v.pos]) ? WV_POS[v.pos].label : '' }; }
+
+  function rawGroups(){
+    var t = todayStr();
+    if (ui.tab === 'today') return [{ date: t, keys: sessionKeys(ui.cat), today: true }];
+    var L = dayLog();
+    return Object.keys(L).sort().reverse().map(function(d){ return { date: d, keys: (L[d] && L[d][ui.cat]) || [], today: d === t }; })
+      .filter(function(g){ return g.keys.length; });
+  }
+  function groups(){
+    var q = ui.q.trim().toLowerCase();
+    var gs = rawGroups();
+    if (!q) return gs;
+    return gs.map(function(g){
+      return { date: g.date, today: g.today, keys: g.keys.filter(function(k){ var i = info(k); return i.word.toLowerCase().indexOf(q) !== -1 || i.meaning.toLowerCase().indexOf(q) !== -1; }) };
+    }).filter(function(g){ return g.keys.length; });
+  }
+  function count(gs){ return gs.reduce(function(a, g){ return a + g.keys.length; }, 0); }
+
+  // ── Format teks untuk Catatan ──
+  function line(k, i){
+    var f = info(k), m = (ui.meaning && f.meaning) ? f.meaning : '';
+    if (ui.fmt === 'tab') return f.word + (ui.meaning ? '\t' + m : '');
+    var body = m ? f.word + ' \u2014 ' + m : f.word;
+    return (ui.fmt === 'dot' ? '\u2022 ' : (i + 1) + '. ') + body;
+  }
+  function groupText(g){
+    var rows = g.keys.map(function(k, i){ return line(k, i); }).join('\n');
+    if (ui.fmt === 'tab') return rows;
+    return (g.today ? 'Sesi Hari Ini \u00b7 ' : '') + dateLong(g.date) + ' (' + g.keys.length + ' kata)\n' + rows;
+  }
+  function fullText(gs){ return gs.map(groupText).join('\n\n'); }
+
+  function copyText(t){
+    function fb(){
+      var ta = document.createElement('textarea'); ta.value = t; ta.setAttribute('readonly', '');
+      ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;font-size:16px';
+      document.body.appendChild(ta); ta.select(); try { ta.setSelectionRange(0, t.length); } catch(e){}
+      var ok = false; try { ok = document.execCommand('copy'); } catch(e){}
+      ta.remove(); return ok;
+    }
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t).then(function(){ return true; }, function(){ return fb(); });
+    return Promise.resolve(fb());
+  }
+  var IDLE_MSG = 'Ketuk kata untuk menyalin satu per satu', stTimer = 0;
+  function setStatus(m, kind){
+    var el = $('wvdStatus'); if (!el) return;
+    clearTimeout(stTimer);
+    el.className = 'wvd-status' + (kind ? ' ' + kind : '');
+    var t = el.querySelector('.t'); if (t) t.textContent = m;
+    if (kind) stTimer = setTimeout(function(){ var e2 = $('wvdStatus'); if (!e2) return; e2.className = 'wvd-status'; var t2 = e2.querySelector('.t'); if (t2) t2.textContent = IDLE_MSG; }, 2600);
+  }
+  function toast(m){ setStatus(m, /gagal|belum/i.test(m) ? 'err' : 'ok'); }
+  var copyTimer = 0;
+  function flashCopied(){
+    var b = $('wvdCopy'); if (!b) return;
+    b.classList.add('done'); var l = b.querySelector('.lbl'), old = b.getAttribute('data-lbl');
+    if (l) l.textContent = 'Tersalin \u2713';
+    clearTimeout(copyTimer);
+    copyTimer = setTimeout(function(){ var b2 = $('wvdCopy'); if (!b2) return; b2.classList.remove('done'); var l2 = b2.querySelector('.lbl'); if (l2) l2.textContent = old; }, 1900);
+  }
+  function doCopy(gs, quiet){
+    var n = count(gs);
+    if (!n) { toast('Belum ada kata untuk disalin'); return; }
+    copyText(fullText(gs)).then(function(ok){
+      if (ok) { buzz(12); toast(n + ' kata tersalin'); if (!quiet) flashCopied(); } else toast('Gagal menyalin, coba lagi');
+    });
+  }
+  function doShare(){
+    var gs = groups(); if (!count(gs)) return;
+    var t = fullText(gs);
+    if (navigator.share) navigator.share({ text: t }).catch(function(){});
+    else doCopy(gs);
+  }
+
+  // ── CSS ──
+  function css(){
+    if ($('wvdCss')) return;
+    var st = document.createElement('style'); st.id = 'wvdCss';
+    st.textContent = [
+      "#wvDaily{position:fixed;inset:0;z-index:99998;background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center;font-family:var(--font-body);animation:wvdFade .2s ease both}",
+      "#wvDaily.out{animation:wvdFadeOut .18s ease both}#wvDaily.out .wvd-sheet{animation:wvdDown .18s ease both}",
+      "#wvDaily *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}",
+      "#wvDaily .wvd-sheet{position:relative;width:100%;max-width:520px;height:min(92vh,820px);display:flex;flex-direction:column;overflow:hidden;color:var(--text);background:var(--bg2);border:1px solid var(--border-light);border-bottom:0;border-radius:20px 20px 0 0;box-shadow:0 -16px 50px rgba(0,0,0,.55);animation:wvdUp .3s cubic-bezier(.2,.9,.25,1) both;transition:transform .2s ease}",
+      "@keyframes wvdFade{from{opacity:0}to{opacity:1}}@keyframes wvdFadeOut{to{opacity:0}}@keyframes wvdUp{from{transform:translateY(100%)}to{transform:none}}@keyframes wvdDown{to{transform:translateY(100%)}}@keyframes wvdIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}",
+      "#wvDaily .wvd-dragzone{flex:none;touch-action:none}",
+      "#wvDaily .wvd-grab{display:flex;justify-content:center;padding:6px 0 0}#wvDaily .wvd-grab i{width:34px;height:3px;border-radius:9px;background:rgba(255,255,255,.18)}",
+      "#wvDaily .wvd-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:2px 14px 6px 16px}#wvDaily .wvd-head>div:first-child{display:flex;align-items:baseline;gap:8px;min-width:0}",
+      "#wvDaily .wvd-title{font:700 16px/1.15 var(--font-head);letter-spacing:.1px;white-space:nowrap}",
+      "#wvDaily .wvd-sub{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500;color:var(--text3)}",
+      "#wvDaily .wvd-x{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--border-light);background:var(--surface-raised);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}#wvDaily .wvd-x:active{transform:scale(.92)}",
+      "#wvDaily .wvd-row{flex:none;display:flex;align-items:center;gap:8px;padding:0 14px}#wvDaily .wvd-ctl{flex:none}",
+      "#wvDaily .wvd-seg{position:relative;display:grid;grid-template-columns:1fr 1fr;padding:2px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid var(--border-light)}",
+      "#wvDaily .wvd-seg::before{content:\"\";position:absolute;top:2px;bottom:2px;left:2px;width:calc(50% - 2px);border-radius:7px;background:rgba(255,255,255,.13);transition:transform .25s cubic-bezier(.3,.9,.3,1)}",
+      "#wvDaily .wvd-seg[data-pos=\"1\"]::before{transform:translateX(100%)}",
+      "#wvDaily .wvd-seg button{position:relative;z-index:1;border:0;background:transparent;color:var(--text3);padding:5px 12px;font:700 12px var(--font-body);cursor:pointer;transition:color .2s}#wvDaily .wvd-seg button.on{color:var(--text)}",
+      "#wvDaily .wvd-cats{display:flex;gap:5px;overflow-x:auto;padding:6px 14px 0;scrollbar-width:none}.wvd-cats:empty{display:none}#wvDaily .wvd-cats::-webkit-scrollbar{display:none}",
+      "#wvDaily .wvd-chip{flex:none;border:1px solid var(--border-light);background:transparent;color:var(--text2);border-radius:999px;padding:3px 10px;font:600 11.5px var(--font-body);cursor:pointer;transition:background .15s,color .15s}",
+      "#wvDaily .wvd-chip.on{background:var(--text);color:var(--bg);border-color:var(--text)}",
+      "#wvDaily .wvd-tools{flex:1;min-width:0}",
+      "#wvDaily .wvd-search{position:relative}#wvDaily .wvd-search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text3);pointer-events:none}",
+      "#wvDaily .wvd-search input{width:100%;height:30px;padding:0 28px 0 30px;border-radius:9px;border:1px solid var(--border-light);background:var(--surface-raised);color:var(--text);font:500 16px var(--font-body);outline:none;-webkit-appearance:none}#wvDaily .wvd-search svg{width:14px;height:14px}",
+      "#wvDaily .wvd-search input:focus{border-color:var(--text3)}",
+      "#wvDaily .wvd-clr{position:absolute;right:4px;top:50%;transform:translateY(-50%);width:22px;height:22px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:var(--text2);display:none;align-items:center;justify-content:center;padding:0;cursor:pointer}#wvDaily .wvd-clr.show{display:flex}",
+      "#wvDaily .wvd-scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:6px 14px 8px}",
+      "#wvDaily .wvd-top{flex:none;padding:0 16px}#wvDaily .wvd-top:not(:empty){padding-top:6px}#wvDaily .wvd-sum{padding:0}",
+      "#wvDaily .wvd-line{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11.5px;font-weight:600;color:var(--text3)}#wvDaily .wvd-line b{color:var(--text);font-weight:700;font-variant-numeric:tabular-nums}",
+      "#wvDaily .wvd-bar{margin-top:4px;height:2px;border-radius:2px;background:rgba(255,255,255,.09);overflow:hidden}#wvDaily .wvd-bar i{display:block;height:100%;border-radius:3px;background:var(--accent);transition:width .35s ease}",
+      "#wvDaily .wvd-hint{padding:2px 2px 0;font-size:11.5px;font-weight:500;color:var(--text3)}",
+      "#wvDaily .wvd-gh{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:8px;margin:0 -14px;padding:8px 16px 4px;font-size:10.5px;font-weight:700;letter-spacing:.6px;text-transform:uppercase;color:var(--text3);background:var(--bg2)}",
+      "#wvDaily .wvd-gh b{color:var(--text);font-weight:700}",
+      "#wvDaily .wvd-mini{border:1px solid var(--border-light);background:var(--surface-raised);color:var(--text2);border-radius:999px;padding:2px 10px;font:700 11px var(--font-body);letter-spacing:0;text-transform:none;cursor:pointer}#wvDaily .wvd-mini:active{transform:scale(.95)}",
+      "#wvDaily .wvd-card{border:1px solid var(--border-light);border-radius:12px;background:var(--surface-raised);overflow:hidden;animation:wvdIn .3s ease both}",
+      "#wvDaily .wvd-item{width:100%;display:flex;align-items:center;gap:8px;text-align:left;margin:0;padding:6px 12px 6px 8px;border:0;border-bottom:1px solid var(--border-light);background:transparent;color:var(--text);font-family:var(--font-body);cursor:pointer;transition:background .15s}",
+      "#wvDaily .wvd-item:last-child{border-bottom:0}#wvDaily .wvd-item:active,#wvDaily .wvd-item.cp{background:rgba(255,255,255,.07)}",
+      "#wvDaily .wvd-n{flex:none;width:18px;text-align:right;font:600 11px var(--font-body);font-variant-numeric:tabular-nums;color:var(--text3)}",
+      "#wvDaily .wvd-t{flex:1;min-width:0}",
+      "#wvDaily .wvd-w{display:inline;font:700 15px/1.3 var(--font-head);word-break:break-word}",
+      "#wvDaily .wvd-w em{margin-left:6px;font:500 11.5px var(--font-body);font-style:normal;color:var(--text3)}#wvDaily .wvd-w u{margin-left:6px;text-decoration:none;font:600 9.5px var(--font-body);color:var(--text3);border:1px solid var(--border-light);border-radius:4px;padding:0 4px}",
+      "#wvDaily .wvd-m{display:inline;margin-left:8px;font-size:12.5px;line-height:1.3;color:var(--text2);word-break:break-word}",
+      "#wvDaily .wvd-st{flex:none;width:16px;height:16px;display:flex;align-items:center;justify-content:center}#wvDaily .wvd-st svg{width:14px;height:14px}",
+      "#wvDaily .wvd-st.ok{color:var(--green-text)}#wvDaily .wvd-st.hf{color:#F5C542}#wvDaily .wvd-st.no::after{content:\"\";width:10px;height:10px;border-radius:50%;border:1.5px solid var(--text3);opacity:.55}",
+      "#wvDaily .wvd-empty{padding:36px 20px 16px;text-align:center;color:var(--text2);font-size:14px;line-height:1.55;animation:wvdIn .3s ease both}",
+      "#wvDaily .wvd-empty .ic{width:56px;height:56px;margin:0 auto 14px;border-radius:18px;display:flex;align-items:center;justify-content:center;background:var(--surface-raised);border:1px solid var(--border-light);color:var(--text3)}",
+      "#wvDaily .wvd-empty b{display:block;margin-bottom:4px;font:700 16px var(--font-head);color:var(--text)}",
+      "#wvDaily .wvd-empty .wvd-chip{margin-top:16px;padding:10px 18px;font-size:13px}",
+      "#wvDaily .wvd-foot{position:relative;flex:none;display:flex;flex-direction:column;gap:6px;padding:7px 14px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--border-light);background:var(--bg2)}",
+      "#wvDaily .wvd-opts{display:flex;align-items:center;justify-content:space-between;gap:10px}",
+      "#wvDaily .wvd-sw{display:flex;align-items:center;gap:8px;border:0;background:none;color:var(--text2);font:600 12.5px var(--font-body);cursor:pointer;padding:2px 0}",
+      "#wvDaily .wvd-sw i{position:relative;width:32px;height:19px;border-radius:99px;background:rgba(255,255,255,.16);transition:background .2s}#wvDaily .wvd-sw i::after{content:\"\";position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.4);transition:transform .2s cubic-bezier(.3,.9,.3,1)}",
+      "#wvDaily .wvd-sw.on i{background:var(--accent)}#wvDaily .wvd-sw.on i::after{transform:translateX(13px);background:var(--accent-inv)}#wvDaily .wvd-sw.on{color:var(--text)}",
+      "#wvDaily .wvd-fmt{display:flex;padding:2px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid var(--border-light)}",
+      "#wvDaily .wvd-fmt button{border:0;background:transparent;color:var(--text3);min-width:34px;padding:3px 8px;border-radius:7px;font:700 12px var(--font-body);cursor:pointer}#wvDaily .wvd-fmt button.on{background:rgba(255,255,255,.14);color:var(--text)}",
+      "#wvDaily .wvd-btns{display:flex;gap:10px}",
+      "#wvDaily .wvd-copy{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:11px;background:var(--accent);color:var(--accent-inv);font:700 14px var(--font-body);cursor:pointer;transition:transform .12s,opacity .2s}",
+      "#wvDaily .wvd-copy:active{transform:scale(.98)}#wvDaily .wvd-copy.done{opacity:.85}#wvDaily .wvd-copy:disabled{opacity:.3;cursor:default}",
+      "#wvDaily .wvd-share{flex:none;width:44px;border-radius:12px;border:1px solid var(--border-light);background:var(--surface-raised);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}#wvDaily .wvd-share:active{transform:scale(.94)}#wvDaily .wvd-share:disabled{opacity:.3}",
+      "#wvDaily .wvd-status{position:absolute;left:14px;right:14px;bottom:100%;margin-bottom:6px;display:none;align-items:center;justify-content:center;gap:7px;padding:7px 12px;border-radius:10px;font:600 12.5px/1.2 var(--font-body);color:var(--text3);background:var(--bg2);pointer-events:none;z-index:3}",
+      "#wvDaily .wvd-status .ic{display:none;flex:none}#wvDaily .wvd-status .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}",
+      "#wvDaily .wvd-status.ok,#wvDaily .wvd-status.err{display:flex}#wvDaily .wvd-status.ok{background:linear-gradient(rgba(48,209,88,.16),rgba(48,209,88,.16)),var(--bg2);color:var(--green-text)}#wvDaily .wvd-status.ok .ic{display:flex}",
+      "#wvDaily .wvd-status.err{background:linear-gradient(rgba(255,92,92,.14),rgba(255,92,92,.14)),var(--bg2);color:var(--red-text)}",
+      "@media (prefers-reduced-motion:reduce){#wvDaily,#wvDaily *{animation-duration:.001ms !important;transition-duration:.001ms !important}}"
+    ].join('');
+    document.head.appendChild(st);
+  }
+
+  // ── Render bagian-bagian panel ──
+  var SV = {
+    check: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>',
+    star: '<svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4 6.1 20.5l1.2-6.5L2.5 9.4l6.6-.9z"/></svg>',
+    x: '<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>',
+    search: '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>',
+    copy: '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="11" height="11" rx="2.5"/><path d="M5 15V6.5A2.5 2.5 0 0 1 7.5 4H16"/></svg>',
+    share: '<svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>',
+    book: '<svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v16H6.5A2.5 2.5 0 0 0 4 21.5z"/><path d="M4 5.5v16"/><path d="M9 8h7"/></svg>'
+  };
+
+  function renderSub(){
+    var el = $('wvdSub'); if (!el) return;
+    el.textContent = dateLong(todayStr());
+  }
+  // Tab + kategori (tetap di atas, tidak ikut scroll)
+  function renderCtl(){
+    var el = $('wvdCtl'); if (!el) return;
+    var cl = cats();
+    var h = '<div class="wvd-seg" data-pos="' + (ui.tab === 'today' ? 0 : 1) + '"><button class="' + (ui.tab === 'today' ? 'on' : '') + '" data-a="tab" data-v="today">Hari ini</button><button class="' + (ui.tab === 'hist' ? 'on' : '') + '" data-a="tab" data-v="hist">Riwayat</button></div>';
+    el.innerHTML = h;
+    var ce = $('wvdCats');
+    if (ce) ce.innerHTML = cl.length > 1 ? cl.map(function(c){ return '<button class="wvd-chip' + (c.id === ui.cat ? ' on' : '') + '" data-a="cat" data-v="' + esc(c.id) + '">' + esc(c.name) + '</button>'; }).join('') : '';
+  }
+  // Ringkasan progres: satu baris tipis
+  function renderTop(){
+    var el = $('wvdTop'); if (!el) return;
+    var h = '';
+    if (ui.tab === 'today') {
+      var keys = sessionKeys(ui.cat), done = doneToday(), nH = 0, nD = 0;
+      keys.forEach(function(k){ if (mastered(k)) nH++; else if (done.indexOf(k) !== -1) nD++; });
+      var fin = nH + nD, tot = keys.length, pct = tot ? Math.round(fin / tot * 100) : 0;
+      if (tot) h = '<div class="wvd-sum"><div class="wvd-line"><span><b>' + fin + '</b>/' + tot + ' selesai</span><span>' + nH + ' hafal \u00b7 ' + (tot - fin) + ' belum</span></div><div class="wvd-bar"><i style="width:' + pct + '%"></i></div></div>';
+      else h = '<div class="wvd-sum"><div class="wvd-line"><span>Sesi belum dimulai</span></div></div>';
+    } else {
+      var rg = rawGroups(), nw = count(rg);
+      h = '<div class="wvd-sum"><div class="wvd-line"><span><b>' + nw + '</b> kata</span><span>' + rg.length + ' hari terakhir</span></div></div>';
+    }
+    el.innerHTML = h;
+  }
+  // Opsi salinan (di footer, dekat tombol salin)
+  function renderOpts(){
+    var el = $('wvdOpts'); if (!el) return;
+    el.innerHTML = '<button class="wvd-sw' + (ui.meaning ? ' on' : '') + '" data-a="mean" aria-pressed="' + ui.meaning + '"><i></i>Sertakan arti</button>'
+      + '<div class="wvd-fmt" role="group" aria-label="Format salinan">'
+      + '<button class="' + (ui.fmt === 'num' ? 'on' : '') + '" data-a="fmt" data-v="num" title="Bernomor">1.</button>'
+      + '<button class="' + (ui.fmt === 'dot' ? 'on' : '') + '" data-a="fmt" data-v="dot" title="Poin">\u2022</button>'
+      + '<button class="' + (ui.fmt === 'tab' ? 'on' : '') + '" data-a="fmt" data-v="tab" title="Dipisah tab (untuk spreadsheet)">Tab</button></div>';
+  }
+  function renderList(){
+    var el = $('wvdList'); if (!el) return;
+    var gs = groups(), n = count(gs), h = '';
+    if (!n) {
+      var searching = ui.q.trim().length > 0;
+      if (searching) h = '<div class="wvd-empty"><div class="ic">' + SV.search + '</div><b>Tidak ditemukan</b>Tidak ada kata yang cocok dengan \u201c' + esc(ui.q.trim()) + '\u201d.</div>';
+      else if (ui.tab === 'today') h = '<div class="wvd-empty"><div class="ic">' + SV.book + '</div><b>Sesi hari ini belum dimulai</b>Daftar kata dibuat saat kamu mulai belajar. Mau lihat daftarnya dulu?<br><button class="wvd-chip on" data-a="prep">Tampilkan kata hari ini</button></div>';
+      else h = '<div class="wvd-empty"><div class="ic">' + SV.book + '</div><b>Belum ada riwayat</b>Kata yang kamu jawab di sesi belajar akan tercatat di sini, per hari.</div>';
+    } else {
+      var done = doneToday(), delay = 0;
+      gs.forEach(function(g, gi){
+        h += (ui.tab === 'today' && gs.length === 1 ? '' : '<div class="wvd-gh"><span>' + (g.today ? '<b>Hari ini</b> \u00b7 ' : '') + esc(dateShort(g.date)) + ' \u00b7 ' + g.keys.length + ' kata</span>'
+          + (ui.tab === 'hist' ? '<button class="wvd-mini" data-a="copyday" data-v="' + gi + '">Salin</button>' : '') + '</div>') + '<div class="wvd-card" style="animation-delay:' + (delay < 200 ? delay : 200) + 'ms">';
+        g.keys.forEach(function(k, i){
+          var f = info(k), st = '';
+          if (mastered(k)) st = '<div class="wvd-st hf" title="Hafal">' + SV.star + '</div>';
+          else if (ui.tab === 'hist' || (g.today && done.indexOf(k) !== -1)) st = '<div class="wvd-st ok" title="Dipelajari">' + SV.check + '</div>';
+          else st = '<div class="wvd-st no"></div>';
+          h += '<button class="wvd-item" data-a="one" data-g="' + gi + '" data-i="' + i + '"><div class="wvd-n">' + (i + 1) + '</div><div class="wvd-t"><div class="wvd-w">' + esc(f.word)
+            + (f.pron ? '<em>' + esc(f.pron) + '</em>' : '') + (f.pos ? '<u>' + esc(f.pos) + '</u>' : '') + '</div>'
+            + (f.meaning ? '<div class="wvd-m">' + esc(f.meaning) + '</div>' : '') + '</div>' + st + '</button>';
+        });
+        h += '</div>';
+        delay += 60;
+      });
+    }
+    el.innerHTML = h;
+  }
+  function renderFoot(){
+    var el = $('wvdFoot'); if (!el) return;
+    var n = count(groups()), lbl = (ui.q.trim() ? 'Salin hasil' : 'Salin semua') + (n ? ' (' + n + ')' : '');
+    el.innerHTML = '<button class="wvd-copy" id="wvdCopy" data-a="copy" data-lbl="' + esc(lbl) + '"' + (n ? '' : ' disabled') + '>' + SV.copy + '<span class="lbl">' + esc(lbl) + '</span></button>'
+      + '<button class="wvd-share" data-a="share" aria-label="Bagikan ke Catatan atau aplikasi lain" title="Bagikan"' + (n ? '' : ' disabled') + '>' + SV.share + '</button>';
+  }
+  function renderAll(){
+    var cl = cats();
+    if (!ui.cat || !cl.some(function(c){ return c.id === ui.cat; })) {
+      var cur = 'kata'; try { cur = currentDailyCategory(); } catch(e){}
+      ui.cat = cl.some(function(c){ return c.id === cur; }) ? cur : 'kata';
+    }
+    renderSub(); renderCtl(); renderTop(); renderOpts(); renderList(); renderFoot();
+  }
+
+  // ── Interaksi ──
+  function onClick(e){
+    var o = $('wvDaily'); if (!o) return;
+    if (e.target === o) { close(); return; }
+    var b = e.target.closest ? e.target.closest('[data-a]') : null; if (!b) return;
+    var a = b.getAttribute('data-a'), v = b.getAttribute('data-v');
+    if (a === 'close') close();
+    else if (a === 'cat') { ui.cat = v; buzz(6); renderAll(); }
+    else if (a === 'tab') { ui.tab = v; buzz(6); var sc = $('wvdScroll'); if (sc) sc.scrollTop = 0; renderAll(); }
+    else if (a === 'mean') { ui.meaning = !ui.meaning; savePrefs(); renderOpts(); }
+    else if (a === 'fmt') { ui.fmt = v; savePrefs(); renderOpts(); }
+    else if (a === 'copy') doCopy(groups());
+    else if (a === 'share') doShare();
+    else if (a === 'copyday') doCopy([groups()[+v]], true);
+    else if (a === 'one') {
+      var g = groups()[+b.getAttribute('data-g')], k = g && g.keys[+b.getAttribute('data-i')];
+      if (k != null) { var f = info(k); copyText(ui.meaning && f.meaning ? f.word + ' \u2014 ' + f.meaning : f.word).then(function(ok){ if (ok) { buzz(10); toast('Disalin: ' + f.word); b.classList.add('cp'); setTimeout(function(){ b.classList.remove('cp'); }, 450); } }); }
+    }
+    else if (a === 'clr') { ui.q = ''; var inp = $('wvdQ'); if (inp) { inp.value = ''; inp.focus(); } $('wvdClr').classList.remove('show'); renderList(); renderFoot(); }
+    else if (a === 'prep') { try { getDailyWords(ui.cat); } catch(err){ console.warn(err); } renderAll(); }
+  }
+  function onInput(e){
+    if (!e.target || e.target.id !== 'wvdQ') return;
+    ui.q = e.target.value; var c = $('wvdClr'); if (c) c.classList.toggle('show', !!ui.q);
+    renderList(); renderFoot();
+  }
+  function onKey(e){ if (e.key === 'Escape') close(); }
+  function bindDrag(zone, sheet){
+    var sy = 0, dy = 0, on = false;
+    zone.addEventListener('touchstart', function(e){ sy = e.touches[0].clientY; dy = 0; on = true; sheet.style.transition = 'none'; }, { passive: true });
+    zone.addEventListener('touchmove', function(e){ if (!on) return; dy = Math.max(0, e.touches[0].clientY - sy); sheet.style.transform = 'translateY(' + dy + 'px)'; }, { passive: true });
+    zone.addEventListener('touchend', function(){ if (!on) return; on = false; sheet.style.transition = ''; if (dy > 110) close(); else sheet.style.transform = ''; });
+  }
+  function close(){
+    var o = $('wvDaily'); document.removeEventListener('keydown', onKey);
+    if (!o || o.classList.contains('out')) return;
+    o.classList.add('out'); setTimeout(function(){ if (o.parentNode) o.remove(); }, 210);
+  }
+  window.wvOpenDaily = function(){
+    var old = $('wvDaily'); if (old) old.remove();
+    css(); buzz(6);
+    ui.tab = 'today'; ui.cat = null; ui.q = '';
+    var o = document.createElement('div'); o.id = 'wvDaily';
+    o.innerHTML = '<div class="wvd-sheet" id="wvdSheet" role="dialog" aria-modal="true" aria-label="Daftar kosakata harian">'
+      + '<div class="wvd-dragzone" id="wvdDrag"><div class="wvd-grab"><i></i></div>'
+      + '<div class="wvd-head"><div><div class="wvd-title">Kosakata Harian</div><div class="wvd-sub" id="wvdSub"></div></div><button class="wvd-x" data-a="close" aria-label="Tutup">' + SV.x + '</button></div></div>'
+      + '<div class="wvd-row"><div class="wvd-ctl" id="wvdCtl"></div>'
+      + '<div class="wvd-tools"><div class="wvd-search">' + SV.search + '<input id="wvdQ" type="search" placeholder="Cari kata / arti\u2026" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="wvd-clr" id="wvdClr" data-a="clr" aria-label="Hapus pencarian">' + SV.x + '</button></div></div></div>'
+      + '<div class="wvd-cats" id="wvdCats"></div>'
+      + '<div class="wvd-top" id="wvdTop"></div>'
+      + '<div class="wvd-scroll" id="wvdScroll"><div class="wvd-list" id="wvdList"></div></div>'
+      + '<div class="wvd-foot"><div class="wvd-status" id="wvdStatus" role="status" aria-live="polite"><span class="ic">' + SV.check + '</span><span class="t">' + IDLE_MSG + '</span></div><div class="wvd-opts" id="wvdOpts"></div><div class="wvd-btns" id="wvdFoot"></div></div></div>';
+    o.addEventListener('click', onClick);
+    o.addEventListener('input', onInput);
+    document.body.appendChild(o);
+    document.addEventListener('keydown', onKey);
+    bindDrag($('wvdDrag'), $('wvdSheet'));
+    renderAll();
   };
 })();
 </script>
