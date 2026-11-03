@@ -2566,6 +2566,86 @@ body.wv-has-wallpaper #wilvocabFooter{
 .hx-w{font-size:13.5px}
 .hx-m{font-size:11.5px}
 .hx-item{margin-bottom:6px!important}</style>
+<style id="hx-compact">/* Sudah Hafal — mode ringkas: header kecil, daftar padat (banyak kata per layar) */
+.hx-scroll{padding:2px 14px 90px}
+#screenHafal .header{padding-bottom:0}
+.hx-tabs{padding:0 0 6px}
+/* hero: satu strip kecil */
+#hxHero .pg-card{margin-bottom:6px;border-radius:calc(14px*var(--r-scale,1))}
+#hxHero .pg-hero{padding:8px 10px!important}
+#hxHero .pg-top{gap:10px;align-items:center}
+#hxHero .pg-ring{width:42px;height:42px}
+#hxHero .pg-ring svg{filter:none}
+#hxHero .pg-ring circle{stroke-width:9}
+#hxHero .pg-ring-c b{font-size:10px;letter-spacing:-.4px}
+#hxHero .pg-hx{min-width:0}
+.hx-h1{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#hxHero .pg-big{font-size:15px;margin:0;line-height:1.1;white-space:nowrap}
+#hxHero .pg-big small{font-size:10.5px;margin-left:4px}
+#hxHero .pg-lv{padding:2px 7px;font-size:8.5px;letter-spacing:.5px;white-space:nowrap}
+#hxHero .pg-nx{height:3px;margin-top:5px}
+.hx-h3{display:flex;flex-wrap:wrap;gap:2px 10px;margin-top:5px;font-size:10px;font-weight:600;color:var(--text3);line-height:1.3}
+.hx-h3 b{color:var(--text2);font-weight:800}
+.hx-h3 .hot,.hx-h3 .hot b{color:#FF8A1F}
+/* filter chip (ganti 3 kartu besar) */
+.hx-fcs{display:flex;gap:6px;margin-bottom:6px}
+.hx-fc{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;gap:5px;height:28px;padding:0 6px;border-radius:calc(10px*var(--r-scale,1));border:var(--border-w-thin) solid var(--border-light);background:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.03);color:var(--text2);font:700 11px var(--font-body);cursor:pointer;transition:.15s;white-space:nowrap}
+.hx-fc:active{transform:scale(.96)}
+.hx-fc .pg-i{width:13px;height:13px;color:var(--c)}
+.hx-fc b{font-size:12px;font-weight:800;color:var(--text);font-variant-numeric:tabular-nums}
+.hx-fc.hx-tile-on{border-radius:calc(10px*var(--r-scale,1))}
+/* pencarian + aksi */
+.hx-tools{margin:0 0 6px!important;gap:6px}
+.hx-tools .custom-input{height:34px;font-size:12.5px;border-radius:calc(10px*var(--r-scale,1))}
+.hx-tools .fd-filter-btn{width:34px;height:34px;border-radius:calc(10px*var(--r-scale,1))}
+.hx-tools .fd-filter-btn svg{width:15px;height:15px}
+.hx-tools .fd-search-input-wrap svg{left:11px;width:14px;height:14px}
+.hx-acts{margin-bottom:6px;gap:6px}
+.hx-acts .sx-btn{padding:0 10px;height:32px;font-size:11px;border-radius:calc(10px*var(--r-scale,1))}
+.hx-count{margin:0 2px 4px;font-size:10px}
+/* daftar: satu kartu, baris tipis */
+#screenHafal .hx-list{padding:0;overflow:hidden;border-radius:calc(14px*var(--r-scale,1))}
+#screenHafal .hx-item{border-radius:0!important;margin:0!important;background:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;border:0!important;border-bottom:var(--border-w-thin) solid var(--border-light)!important}
+#screenHafal .hx-list>.hx-item:last-child{border-bottom:0!important}
+#screenHafal .hx-item.open{background:transparent!important;box-shadow:inset 3px 0 0 var(--accent)!important}
+#screenHafal .hx-item.open .hx-ex{background:transparent;border:1px solid var(--border-light);border-left:3px solid var(--accent);border-radius:calc(8px*var(--r-scale,1))}
+#screenHafal .hx-item.open .hx-chips span{background:transparent;border:1px solid var(--border-light)}
+#screenHafal .hx-item.sel{background:rgba(var(--accent-r),var(--accent-g),var(--accent-b),.13)!important}
+.hx-row{padding:5px 10px;gap:8px;min-height:30px}
+.hx-tx{display:flex;align-items:baseline;gap:8px}
+.hx-w{flex:0 1 40%;min-width:0;font-size:13px;gap:5px}
+.hx-w .hx-t{min-width:0}
+#screenHafal .hx-item .wv-pos{margin:0;padding:2px 5px;font-size:7.5px;letter-spacing:.4px;gap:0;align-self:center}
+#screenHafal .hx-item .wv-pos::before{display:none}
+.hx-w .hx-star{width:10px;height:10px}
+.hx-m{flex:1;min-width:0;margin:0;font-size:11.5px;line-height:1.3}
+/* persen ingatan: angka kecil di kanan (ganti cincin) */
+.hx-ret{order:3;width:auto;height:auto;border-radius:0;background:none;font-size:10.5px;color:var(--c);min-width:30px;justify-content:end}
+.hx-ret::before{display:none}
+.hx-ret span::after{content:"%";font-size:8px;opacity:.75;margin-left:1px}
+.hx-ck{width:20px;height:20px}
+.hx-ck i{width:18px;height:18px}
+.hx-hint{order:2}
+.hx-letter{margin:8px 10px 2px;font-size:10px}
+/* detail saat baris dibuka */
+.hx-det{padding:2px 10px 9px}
+.hx-det .hx-pr{margin:7px 0 0;font-size:11px}
+.hx-ex{margin-top:6px;padding:7px 9px;font-size:12px}
+.hx-chips{gap:5px;margin-top:7px}
+.hx-chips span{font-size:10px;padding:3px 8px}
+.hx-btns{gap:5px;margin-top:8px}
+.hx-btns .sx-btn{padding:6px 9px}
+/* ikut mode wallpaper/hitam seperti kartu lain */
+/* filter & urut: popover kecil dengan pemisah antar bagian */
+.hx-tools{position:relative}
+#hafalFilterPanel.hx-pop{width:232px;max-width:calc(100vw - 28px);top:calc(100% + 6px);padding:10px 12px;border-radius:calc(14px*var(--r-scale,1));z-index:70}
+.hx-pop .hx-psec+.hx-psec{margin-top:9px;padding-top:9px;border-top:1px solid rgba(255,255,255,.16)}
+.hx-pop .fd-filter-panel-label{margin-bottom:5px;font-size:8.5px}
+.hx-pop .hx-seg-wrap{gap:5px;margin-bottom:0}
+.hx-pop .hx-seg-wrap .fd-seg-btn{padding:5px 10px;font-size:10.5px;border-radius:99px}
+body.wv-has-wallpaper .hx-fc,body.wv-has-wallpaper .hx-list{background-color:rgba(0,0,0,calc(var(--wv-wall-dim,0.45) * 0.55 * var(--wv-stat-bg-a,1)))!important;backdrop-filter:blur(var(--wv-stat-blur-px,0px)) saturate(var(--wv-stat-sat,100%))!important;-webkit-backdrop-filter:blur(var(--wv-stat-blur-px,0px)) saturate(var(--wv-stat-sat,100%))!important}
+body.wv-has-wallpaper.wv-cardmode-hitam .hx-fc,body.wv-has-wallpaper.wv-cardmode-hitam .hx-list{background-color:rgba(0,0,0,var(--wv-card-add-a,0))!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+</style>
 <style id="card-follow-settings">/* Semua kartu baru ikut slider "Blur & Transparansi Kartu" dan mode "Hitam" */
 body.wv-has-wallpaper .today-card,
 body.wv-has-wallpaper .pg-tile,
@@ -3346,7 +3426,14 @@ html body .cat-popover-badge{font-size:11px;padding:1px 7px;min-width:20px}
 #screenHome .home-list-switch-btn{width:30px;height:30px}
 #screenHome .home-list-switch-btn svg{width:14px;height:14px}
 #screenHome .home-file-chip .hfc-left{font-size:11px;padding-left:7px}
-#screenHome .home-file-chip,#screenHome .home-file-chip.has-pct{gap:7px;padding:0 12px}</style>
+#screenHome .home-file-chip,#screenHome .home-file-chip.has-pct{gap:7px;padding:0 12px}
+/* Nama file panjang dipotong "…" — angka sisa & garis progres selalu terlihat */
+#screenHome .home-file-chip{max-width:min(64%,260px)}
+#screenHome .home-file-chip .hfc-name{min-width:0;flex:0 1 auto;overflow:hidden}
+#screenHome .home-file-chip .hfc-name-text{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+#screenHome .home-file-chip .hfc-left{flex:none}
+#screenHome .home-file-chip{position:relative}
+</style>
 
 <style id="wv-flash-fx4">/* FLASHCARD FX v5 — ringan & tenang: hanya opacity + transform kecil, tanpa blur/3D/bounce */
 .card-area{perspective:none}
@@ -3404,6 +3491,127 @@ html body .cat-popover-badge{font-size:11px;padding:1px 7px;min-width:20px}
 .act-btn.wv-hot-yes{background:rgba(22,163,74,var(--h))!important;border-color:rgb(22,163,74)!important}
 .act-btn.wv-strong *{color:#fff!important}
 </style>
+<style id="wv-select-clarity">
+/* === Pembeda jelas: terpilih = putih + teks hitam; tidak terpilih = berbingkai tipis === */
+/* Segmented "Hari ini / Riwayat / Hafal / Sering salah" */
+#wvDaily .wvd-seg{background:rgba(255,255,255,.04)!important;border:1.5px solid rgba(255,255,255,.28)!important;padding:3px!important}
+#wvDaily .wvd-seg::before{background:#fff!important;box-shadow:0 2px 8px rgba(0,0,0,.45)!important;top:3px!important;bottom:3px!important;left:3px!important;width:calc((100% - 6px) / var(--n,2))!important}
+#wvDaily .wvd-seg button{color:rgba(255,255,255,.62)!important}
+#wvDaily .wvd-seg button.on{color:#000!important;font-weight:800!important}
+/* Chip kategori */
+#wvDaily .wvd-chip{background:rgba(255,255,255,.06)!important;color:rgba(255,255,255,.75)!important;border:1.5px solid rgba(255,255,255,.28)!important}
+#wvDaily .wvd-chip.on{background:#fff!important;color:#000!important;border-color:#fff!important;font-weight:800!important}
+/* Arah belajar (thumb geser) */
+.direction-thumb{background:#fff!important;border-color:#fff!important;box-shadow:0 2px 10px rgba(0,0,0,.45)!important}
+.direction-opt{color:rgba(255,255,255,.62)!important}
+.direction-opt.active,.direction-opt.dir-preview{color:#000!important;font-weight:800!important}
+/* Tab / chip / filter lain */
+.prog-tab-switch-btn,.filter-chip,.kv-chip,.home-file-chip,.fd-seg-btn,.fd-letter-btn,.font-choice-btn,.ml-size-btn,.home-list-switch-btn,.emoji-suggest-btn{border:1.5px solid rgba(255,255,255,.26)!important;background:rgba(255,255,255,.05)!important;color:rgba(255,255,255,.75)!important;box-shadow:none!important}
+.prog-tab-switch-btn.active,.filter-chip.active,.kv-chip.active,.home-file-chip.active,.fd-seg-btn.active,.fd-letter-btn.active,.font-choice-btn.active,.ml-size-btn.ml-size-active,.home-list-switch-btn.active,.emoji-suggest-btn.active{background:#fff!important;color:#000!important;border-color:#fff!important;font-weight:800!important}
+.kv-chip.is-wrong:not(.active){color:var(--red-text)!important;border-color:rgba(255,92,92,.5)!important}
+.kv-chip.is-wrong.active{background:var(--red-text)!important;color:#fff!important;border-color:var(--red-text)!important}
+.kv-chip.active span,.prog-tab-switch-btn.active em{opacity:.7}
+</style>
+<style id="wv-kv-ui">
+/* === Layar Kosakata: pemisah daftar (segmented), chip tanpa geser, cari jadi ikon === */
+#kosakataListTabs{display:block!important;overflow:visible!important;flex:1;min-width:0;padding-bottom:0!important}
+#kvTopRow #kvSearchBar{flex:none;margin:0}
+#kvTopRow.ks-open #kosakataListTabs{display:none!important}
+#kvTopRow.ks-open #kvSearchBar{flex:1}
+.kv-seg{position:relative;display:grid;grid-template-columns:repeat(var(--n,2),1fr);padding:3px;border-radius:999px;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.28)}
+.kv-seg::before{content:"";position:absolute;top:3px;bottom:3px;left:3px;width:calc((100% - 6px) / var(--n,2));border-radius:999px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.45);transform:translateX(calc(var(--pos,0) * 100%));transition:transform .28s cubic-bezier(.3,.9,.3,1)}
+.kv-seg button{position:relative;z-index:1;display:inline-flex;align-items:center;justify-content:center;gap:6px;height:30px;padding:0 8px;border:0;background:transparent;color:rgba(255,255,255,.62);font:700 12px var(--font-body);cursor:pointer;transition:color .2s;white-space:nowrap;min-width:0}
+.kv-seg button svg{width:14px;height:14px;flex:none}
+.kv-seg button.on{color:#000;font-weight:800}
+/* chip status & file: dua baris geser, dipisah garis tipis */
+#kvChipRows.kv-chips{gap:0}
+.kv-chiprow.kv-grid3,.kv-chiprow.kv-grid2{display:flex;flex-wrap:nowrap;gap:6px;overflow-x:auto;overflow-y:hidden;max-height:none;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.kv-chiprow.kv-grid3::-webkit-scrollbar,.kv-chiprow.kv-grid2::-webkit-scrollbar{display:none}
+.kv-chiprow.kv-grid3{padding-bottom:10px}
+.kv-chiprow.kv-grid2{padding-top:10px;border-top:2px solid rgba(255,255,255,.4)}
+.kv-grid2 .kv-chip{border-radius:10px}
+.kv-grid3 .kv-chip,.kv-grid2 .kv-chip{flex:0 0 auto;width:auto;height:30px;padding:0 13px;justify-content:center;overflow:visible}
+.kv-grid2 .kv-chip.kv-file b{flex:none;max-width:120px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.kv-grid2 .kv-chip span{margin-left:0}
+/* cari: ikon saja, melebar saat diketuk */
+#kvSearchBar .fd-search-input-wrap{transition:width .22s ease}
+#kvSearchBar.sc{justify-content:flex-start}
+#kvSearchBar.sc .fd-search-input-wrap{flex:none;width:38px}
+#kvSearchBar.sc #kosakataSearchInput{padding:0!important;color:transparent!important;caret-color:transparent;cursor:pointer}
+#kvSearchBar.sc #kosakataSearchInput::placeholder{color:transparent}
+#kvSearchBar.sc .fd-search-input-wrap>svg{left:50%;transform:translate(-50%,-50%);color:var(--text2);width:16px;height:16px}
+</style>
+<script>
+function kvSyncSearchBar(){
+  var bar = document.getElementById('kvSearchBar'), si = document.getElementById('kosakataSearchInput');
+  if (!bar || !si) return;
+  var sc = !si.value && document.activeElement !== si;
+  bar.classList.toggle('sc', sc);
+  var tr = document.getElementById('kvTopRow'); if (tr) tr.classList.toggle('ks-open', !sc);
+}
+document.addEventListener('focusin', function(e){ if (e.target && e.target.id === 'kosakataSearchInput') { var b = document.getElementById('kvSearchBar'); if (b) b.classList.remove('sc'); var tr = document.getElementById('kvTopRow'); if (tr) tr.classList.add('ks-open'); } });
+document.addEventListener('focusout', function(e){ if (e.target && e.target.id === 'kosakataSearchInput') setTimeout(kvSyncSearchBar, 0); });
+</script>
+<style id="wv-hx-ui">
+/* === Layar Hafal: tab + ikon cari/filter/pilih satu baris, ikon di kanan === */
+#hxTopRow{display:flex;align-items:center;gap:8px;margin:0 0 8px}
+#hxTopRow #hxTabs,#hxTopRow #hxTabs:empty{display:block;flex:1;min-width:0;padding:0!important;overflow:visible}
+#hxTopRow .hx-tools{flex:none;margin:0!important;display:flex;gap:6px;align-items:center}
+#hxTopRow.ks-open #hxTabs{display:none!important}
+#hxTopRow.ks-open .hx-tools{flex:1}
+.kv-seg button em{font-style:normal;font-weight:800;font-size:10px;opacity:.6}
+#hxTabs .kv-seg button{font-size:11.5px;padding:0 6px;gap:4px}
+#hxSearchBar .fd-search-input-wrap{transition:width .22s ease}
+#hxSearchBar.sc .fd-search-input-wrap{flex:none;width:34px}
+#hxSearchBar.sc #hafalSearchInput{padding:0!important;color:transparent!important;caret-color:transparent;cursor:pointer}
+#hxSearchBar.sc #hafalSearchInput::placeholder{color:transparent}
+#hxSearchBar.sc .fd-search-input-wrap>svg{left:50%;transform:translate(-50%,-50%);color:var(--text2);width:16px;height:16px}
+</style>
+<script>
+function hxSyncSearch(){
+  var bar = document.getElementById('hxSearchBar'), si = document.getElementById('hafalSearchInput');
+  if (!bar || !si) return;
+  var sc = !si.value && document.activeElement !== si;
+  bar.classList.toggle('sc', sc);
+  var tr = document.getElementById('hxTopRow'); if (tr) tr.classList.toggle('ks-open', !sc);
+}
+document.addEventListener('focusin', function(e){ if (e.target && e.target.id === 'hafalSearchInput') { var b = document.getElementById('hxSearchBar'); if (b) b.classList.remove('sc'); var tr = document.getElementById('hxTopRow'); if (tr) tr.classList.add('ks-open'); } });
+document.addEventListener('focusout', function(e){ if (e.target && e.target.id === 'hafalSearchInput') setTimeout(hxSyncSearch, 0); });
+</script>
+<style id="wv-card-files">
+/* Penanda file kosakata — di luar kartu, di bawahnya */
+.card-files{flex:none;display:flex;justify-content:center;align-items:center;flex-wrap:nowrap;gap:6px;width:100%;max-width:420px;margin:0 auto;padding:0 20px;background:var(--bg);box-sizing:border-box;overflow:hidden}
+.card-files.has{min-height:32px;padding-bottom:6px}
+.cf-file{flex:0 1 auto;min-width:0;display:inline-flex;align-items:center;gap:7px;height:26px;max-width:100%;padding:0 12px 0 10px;border-radius:999px;border:1.5px solid rgba(255,255,255,.22);background:rgba(255,255,255,.05);color:rgba(255,255,255,.82);font:700 11.5px var(--font-body);letter-spacing:.2px;animation:cfFileIn .25s ease both}
+.cf-file i{flex:none;width:8px;height:8px;border-radius:50%}
+.cf-file b{font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+button.cf-more{flex:none;cursor:pointer;justify-content:center;padding:0 11px;min-width:34px;font-variant-numeric:tabular-nums}
+@keyframes cfFileIn{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+</style>
+<script>
+// Tampilkan nama file tempat kata ini dimasukkan (bisa lebih dari satu). Kata yang
+// belum masuk file tetap tampil di sesi seperti biasa, cuma tanpa penanda.
+function wvRenderCardFiles(w){
+  var el = document.getElementById('cardFiles'); if (!el) return;
+  var files = [], any = false;
+  try { files = loadWordFiles() || []; } catch(e) {}
+  any = files.length > 0;
+  var key = w && w.word, hit = [];
+  if (key) files.forEach(function(f){ if ((f.words || []).indexOf(key) !== -1) hit.push(f); });
+  el.classList.toggle('has', any);
+  hit.sort(function(a, b){ return (a.name || '').localeCompare(b.name || ''); });
+  var MAXV = 2, shown = hit.slice(0, MAXV), extra = hit.slice(MAXV);
+  el.innerHTML = shown.map(function(f){
+    return '<span class="cf-file" title="' + cfEsc(f.name) + '"><i style="background:' + fileTagColor(f.id) + '"></i><b>' + cfEsc(f.name) + '</b></span>';
+  }).join('') + (extra.length ? '<button type="button" class="cf-file cf-more" aria-label="Lihat semua file">+' + extra.length + '</button>' : '');
+  var mb = el.querySelector('.cf-more');
+  if (mb) mb.onclick = function(){ try { appAlert('Kata ini ada di ' + hit.length + ' file:\n\n' + hit.map(function(f){ return '\u2022 ' + f.name; }).join('\n')); } catch(e) {} };
+}
+</script>
+
+
+
+
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute;overflow:hidden">
@@ -3534,6 +3742,7 @@ html body .cat-popover-badge{font-size:11px;padding:1px 7px;min-width:20px}
       </div>
     </div>
   </div>
+  <div class="card-files" id="cardFiles" aria-label="File kosakata kata ini"></div>
   <div id="srsCardInfo" style="text-align:center;font-size:10px;color:var(--text3);padding:4px 20px 0;letter-spacing:1px;display:none;background:var(--bg)"></div>
   <div class="action-row" id="actionRow">
     <button class="act-btn btn-again" onclick="answerCard(false)">
@@ -3728,11 +3937,9 @@ html body .cat-popover-badge{font-size:11px;padding:1px 7px;min-width:20px}
     <div class="logo">KOSAKATA</div>
     <button type="button" class="sx-btn" onclick="openVocabImportModal()" title="Impor file kosakata" style="display:inline-flex;align-items:center;gap:6px"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M5 20h14"/></svg>Impor</button>
   </div>
-  <div style="padding:12px 20px 0;flex-shrink:0">
+  <div id="kvTopRow" style="padding:12px 20px 8px;flex-shrink:0;display:flex;align-items:center;gap:8px">
     <div id="kosakataListTabs" style="display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px"></div>
-  </div>
-  <div style="padding:10px 20px 8px;flex-shrink:0">
-    <div class="fd-search-bar" style="margin-bottom:0;position:relative">
+    <div class="fd-search-bar sc" id="kvSearchBar" style="margin-bottom:0;position:relative">
       <div class="fd-search-input-wrap">
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
         <input class="custom-input" id="kosakataSearchInput" placeholder="Cari kata atau arti..." oninput="debouncedRenderKosakataList(this.value)" autocorrect="off" autocapitalize="off" spellcheck="false" style="margin-bottom:0;padding-left:36px;padding-right:34px">
@@ -3773,22 +3980,24 @@ html body .cat-popover-badge{font-size:11px;padding:1px 7px;min-width:20px}
     <div class="logo">SUDAH HAFAL</div>
   </div>
   <div class="hx-scroll" id="hafalScroll">
-    <div class="hx-tabs" id="hxTabs"></div>
-    <div id="hxHero"></div>
-    <div class="fd-search-bar hx-tools">
-      <div class="fd-search-input-wrap">
-        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-        <input class="custom-input" id="hafalSearchInput" placeholder="Cari kata atau arti..." oninput="debouncedRenderHafalList(this.value)" autocorrect="off" autocapitalize="off" spellcheck="false" style="margin-bottom:0;padding-left:36px">
+    <div id="hxTopRow">
+      <div class="hx-tabs" id="hxTabs"></div>
+      <div class="fd-search-bar hx-tools sc" id="hxSearchBar">
+        <div class="fd-search-input-wrap">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+          <input class="custom-input" id="hafalSearchInput" placeholder="Cari kata atau arti..." oninput="debouncedRenderHafalList(this.value)" autocorrect="off" autocapitalize="off" spellcheck="false" style="margin-bottom:0;padding-left:36px">
+        </div>
+        <button type="button" id="hafalFilterToggleBtn" class="fd-filter-btn" onclick="toggleHafalFilterPanel()" title="Urutkan &amp; filter">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
+          <span id="hafalFilterDot" class="fd-filter-dot"></span>
+        </button>
+        <button type="button" id="hxSelBtn" class="fd-filter-btn" data-act="selmode" title="Pilih banyak">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12.5l3 3 5-6"/></svg>
+        </button>
+        <div id="hafalFilterPanel" class="fd-filter-panel kv-filter-popover hx-pop" style="display:none"></div>
       </div>
-      <button type="button" id="hafalFilterToggleBtn" class="fd-filter-btn" onclick="toggleHafalFilterPanel()" title="Urutkan &amp; filter">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h10M18 6h2M4 12h4M12 12h8M4 18h12M20 18h0"/><circle cx="16" cy="6" r="2"/><circle cx="10" cy="12" r="2"/><circle cx="18" cy="18" r="2"/></svg>
-        <span id="hafalFilterDot" class="fd-filter-dot"></span>
-      </button>
-      <button type="button" id="hxSelBtn" class="fd-filter-btn" data-act="selmode" title="Pilih banyak">
-        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12.5l3 3 5-6"/></svg>
-      </button>
     </div>
-    <div id="hafalFilterPanel" class="fd-filter-panel" style="display:none;margin-bottom:10px"></div>
+    <div id="hxHero"></div>
     <div id="hxActs"></div>
     <div id="hafalListContent"></div>
     <div id="hxSelBar" class="hx-selbar"></div>
@@ -3981,7 +4190,7 @@ html body .cat-popover-badge{font-size:11px;padding:1px 7px;min-width:20px}
   <div class="modal">
     <button class="modal-close" onclick="closeModal()">✕</button>
     <div class="modal-title">RESET SESI?</div>
-    <p style="font-size:14px;color:var(--text2);margin:0 0 8px;line-height:1.5">Sesi diulang dari awal. Progres hafal tetap aman.</p>
+    <p style="font-size:14px;color:var(--text2);margin:0 0 8px;line-height:1.5">Sesi hari ini dimulai dari awal. Kata yang sudah hafal tetap aman.</p>
     <p id="resetWarnText" style="font-size:12.5px;color:var(--text3);margin:0 0 18px;line-height:1.5"></p>
     <div class="app-dlg-actions" style="flex-direction:row-reverse">
       <button onclick="doResetDaily()" class="app-dlg-btn app-dlg-ok"><svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em;flex-shrink:0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg> Reset</button>
@@ -4829,12 +5038,34 @@ function syncFilePctToggleUI() {
 // Persentase bisa dihitung dari kata yang sudah HAFAL (default) atau yang
 // sudah DIPELAJARI (pernah dijawab sekali saja).
 function getFilePctMetric() {
-  try { return localStorage.getItem('wv_file_pct_metric') === 'learned' ? 'learned' : 'mastered'; } catch(e) { return 'mastered'; }
+  try { return localStorage.getItem('wv_file_pct_metric') === 'mastered' ? 'mastered' : 'learned'; } catch(e) { return 'learned'; }
 }
 function toggleFilePctMetric() {
   try { localStorage.setItem('wv_file_pct_metric', getFilePctMetric() === 'learned' ? 'mastered' : 'learned'); } catch(e) {}
   syncFilePctToggleUI();
   if (typeof renderHomeFilePicker === 'function') renderHomeFilePicker();
+}
+// Daftar objek kata dari sebuah file: unik (kata yang tercatat ganda di file
+// dihitung sekali) dan hanya yang masih ada di VOCAB. SEMUA hitungan per file
+// (chip Beranda, daftar file, detail file) wajib lewat sini supaya angkanya sama.
+function fileWordObjs(f) {
+  var seen = {}, out = [];
+  ((f && f.words) || []).forEach(function(w) {
+    if (seen[w]) return; seen[w] = true;
+    var v = vocabFind(w);
+    if (v) out.push(v);
+  });
+  return out;
+}
+// Hitung dipelajari & hafal sekaligus dari status kartu per-kata (state.learned) —
+// sumber tunggal yang sama untuk "Semua", tiap file, Progress, dan Hafal.
+function countLearnedMastered(wordObjs) {
+  var l = 0, m = 0;
+  for (var i = 0; i < wordObjs.length; i++) {
+    var c = state && state.learned && state.learned[wordObjs[i].word];
+    if (c) { l++; if (c.mastered) m++; }
+  }
+  return { total: wordObjs.length, learned: l, mastered: m };
 }
 function pctMasteredOf(wordObjs) {
   if (!wordObjs.length) return 0;
@@ -4848,16 +5079,14 @@ function pctMasteredOf(wordObjs) {
 }
 // Chip ramping: "kurang N" (sisa kata yang belum hafal/dipelajari) + garis progres tipis.
 function filePctHTMLFromWords(wordObjs) {
-  var total = wordObjs.length, m = 0;
+  var cnt = countLearnedMastered(wordObjs), total = cnt.total;
   var learnedMode = getFilePctMetric() === 'learned';
-  for (var i = 0; i < total; i++) {
-    var w = wordObjs[i].word;
-    if (learnedMode ? !!(state.learned && state.learned[w]) : isWordMastered(w)) m++;
-  }
+  var m = learnedMode ? cnt.learned : cnt.mastered;
   var left = total - m;
   var pct = total ? Math.round(m / total * 100) : 0;
   var done = total > 0 && left === 0;
-  return '<span class="hfc-left' + (done ? ' done' : '') + '" title="' + m + ' dari ' + total + ' kata">' + (done ? '\u2713' : left) + '</span>'
+  var tip = cnt.learned + ' dari ' + total + ' kata sudah dipelajari \u00b7 ' + cnt.mastered + ' sudah hafal \u00b7 sisa ' + left + ' ' + (learnedMode ? 'belum dipelajari' : 'belum hafal');
+  return '<span class="hfc-left' + (done ? ' done' : '') + '" title="' + tip + '">' + (done ? '\u2713' : left) + '</span>'
        + '<i class="hfc-line"><b style="width:' + pct + '%"></b></i>';
 }
 
@@ -4903,7 +5132,7 @@ function renderHomeFilePicker() {
   var chips = '<button type="button" class="home-file-chip' + (_showPct ? ' has-pct' : '') + (!homeSessionFileId ? ' active' : '') + ((_lockKey && _lockKey !== _allKey) ? ' locked' : '') + '" onclick="setHomeSessionFile(null)"><span class="hfc-name">' + ((_lockKey && _lockKey !== _allKey) ? LOCK_SVG : '') + '<svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em;flex-shrink:0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h11v16H6a2 2 0 0 0-2 2z"/><path d="M17 3v16"/></svg><span class="hfc-name-text">Semua</span></span>' + (_showPct ? filePctHTMLFromWords(getVocabForList(activeListId)) : '') + '</button>';
   chips += files.map(function(f) {
     var active = homeSessionFileId === f.id;
-    return '<button type="button" class="home-file-chip' + (_showPct ? ' has-pct' : '') + (active ? ' active' : '') + ((_lockKey && _lockKey !== ('file:' + f.id)) ? ' locked' : '') + '" onclick="setHomeSessionFile(\'' + f.id + '\')" title="Belajar khusus dari file ' + cfEsc(f.name) + '"><span class="hfc-name">' + ((_lockKey && _lockKey !== ('file:' + f.id)) ? LOCK_SVG : '') + '<span class="hfc-name-text">' + cfEsc(f.name) + '</span></span>' + (_showPct ? filePctHTMLFromWords(f.words.map(function(w){ return vocabFind(w); }).filter(Boolean)) : '') + '</button>';
+    return '<button type="button" class="home-file-chip' + (_showPct ? ' has-pct' : '') + (active ? ' active' : '') + ((_lockKey && _lockKey !== ('file:' + f.id)) ? ' locked' : '') + '" onclick="setHomeSessionFile(\'' + f.id + '\')" title="Belajar khusus dari file ' + cfEsc(f.name) + '"><span class="hfc-name">' + ((_lockKey && _lockKey !== ('file:' + f.id)) ? LOCK_SVG : '') + '<span class="hfc-name-text">' + cfEsc(f.name) + '</span></span>' + (_showPct ? filePctHTMLFromWords(fileWordObjs(f)) : '') + '</button>';
   }).join('');
   row.innerHTML = chips;
   var switchBtn = document.getElementById('homeListSwitchBtn');
@@ -5696,6 +5925,7 @@ function showCard() {
   document.getElementById('cardNum').innerHTML = isExtraReview ? `<svg viewBox="0 0 24 24" width="1em" height="1em" style="vertical-align:-0.15em;flex-shrink:0" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><path d="M3 21v-5h5"/></svg> ${displayIdx}/${total}` : `${displayIdx}/${total}`;
   document.getElementById('studyProgressBar').style.width = progress + '%';
   document.getElementById('cardWord').textContent = w.word.toUpperCase();
+  try { wvRenderCardFiles(w); } catch(e) {}
   document.getElementById('cardPron').textContent = w.pronunciation ? `[${w.pronunciation}]` : '';
   document.getElementById('cardMeaning').textContent = w.meaning;
   const cardMeaningEl = document.getElementById('cardMeaning');
@@ -6852,6 +7082,40 @@ function startResetDailyPicker(btn) {
   }, null, { sheet: true, action: 'LANJUT' });
 }
 
+// Kata yang BARU dipelajari hari ini di kategori tertentu (kartu dibuat hari ini,
+// belum hafal). Dipakai Reset sesi harian supaya kata-kata itu ikut keluar dari
+// Review/SRS/mode belajar lain — bukan menggantung setelah file diganti.
+function getWordsIntroducedToday(listId) {
+  var t = todayStr(), seen = {}, out = [];
+  // Kata yang tersentuh sesi hari ini (sumber: hitungan harian, log jawaban hari ini, daftar sesi).
+  function add(k) { if (k) seen[k] = 1; }
+  Object.keys(state.todayCountedWords || {}).forEach(add);
+  (((state.wordDayLog || {})[t] || {})[listId] || []).forEach(add);
+  (state.dailySessionWords || []).forEach(add);
+  (state.dailySessionWordsSlang || []).forEach(add);
+  Object.keys(state.dailySessionScoped || {}).forEach(function(key) {
+    var e = state.dailySessionScoped[key];
+    if (e && e.date === t) (e.words || []).forEach(add);
+  });
+  // Kata yang sudah pernah dijawab di HARI LAIN (log harian) = bukan kata baru hari ini → tidak boleh ikut reset.
+  var prior = {};
+  Object.keys(state.wordDayLog || {}).forEach(function(d) {
+    if (d === t) return;
+    var byCat = state.wordDayLog[d] || {};
+    Object.keys(byCat).forEach(function(cat) { (byCat[cat] || []).forEach(function(w) { prior[w] = 1; }); });
+  });
+  Object.keys(state.learned || {}).forEach(function(k) {
+    var c = state.learned[k]; if (!c || c.mastered) return;
+    var v = vocabFind(k); if (!v || (v.listId || 'kata') !== listId) return;
+    if (prior[k] && c.introDate !== t) return;
+    // Kartu baru ditandai introDate. Kartu lama (tanpa penanda): dianggap baru hari ini
+    // kalau tersentuh sesi hari ini dan masih sedikit dijawab (belum pernah jadi kartu review lama).
+    var isNew = c.introDate ? (c.introDate === t) : (seen[k] && (c.count || 0) <= 6);
+    if (isNew) out.push(k);
+  });
+  return out;
+}
+
 function confirmResetDaily(listId) {
   _pendingResetListId = listId || 'kata';
   var listInfo = (typeof getListById === 'function') ? getListById(_pendingResetListId) : null;
@@ -6861,8 +7125,10 @@ function confirmResetDaily(listId) {
   var wEl = document.getElementById('resetWarnText');
   if (wEl) {
     var cnt = getTodayCountFor(_pendingResetListId);
-    wEl.textContent = 'Hitungan hari ini (' + cnt + ' kata) jadi 0 dan kunci file dibuka.'
-      + ((state.streakGivenDate === todayStr()) ? ' Streak tetap aman.' : '');
+    var _nu = getWordsIntroducedToday(_pendingResetListId).length;
+    wEl.textContent = 'Hitungan hari ini (' + cnt + ' kata) jadi 0 dan kamu bisa pilih file lain.'
+      + (_nu ? ' ' + _nu + ' kata yang baru dipelajari hari ini dihapus dari Review.' : '')
+      + ((state.streakGivenDate === todayStr()) ? ' Streak tidak berubah.' : '');
   }
   document.getElementById('resetModal').classList.add('open');
 }
@@ -6873,6 +7139,22 @@ function closeModal() {
 
 function doResetDaily() {
   var listId = _pendingResetListId || 'kata';
+
+  // Kata yang baru dipelajari di sesi hari ini ikut di-reset: kartunya dihapus
+  // (dicadangkan di state.resetUnlearnBackup) sehingga tidak menggantung di
+  // Review/SRS/Kuis dan hitungan file/Progress ikut kembali.
+  var _unl = getWordsIntroducedToday(listId);
+  try { if (state.wordDayLog && state.wordDayLog[todayStr()]) delete state.wordDayLog[todayStr()][listId]; wvSyncTodayLogs(); } catch(e) {}
+  if (_unl.length) {
+    state.resetUnlearnBackup = { date: todayStr(), listId: listId, cards: {} };
+    _unl.forEach(function(k) { state.resetUnlearnBackup.cards[k] = state.learned[k]; delete state.learned[k]; });
+    if (state.carryOver && state.carryOver.items) {
+      var _us = {}; _unl.forEach(function(k){ _us[k] = 1; });
+      state.carryOver.items.forEach(function(it){ it.words = (it.words || []).filter(function(w){ return !_us[w]; }); });
+      state.carryOver.items = state.carryOver.items.filter(function(it){ return it.words.length; });
+      if (!state.carryOver.items.length) state.carryOver = null;
+    }
+  }
 
   // Reset HANYA menyentuh kategori yang dipilih: kunci, hitungan, status
   // & cache sesi kategori itu saja. Kategori lain (mis. reset "Slang &
@@ -6909,7 +7191,7 @@ function doResetDaily() {
   updateHome();
   if (typeof renderHomeFilePicker === 'function') renderHomeFilePicker();
   if (typeof showSimpleToast === 'function') {
-    showSimpleToast(listId === 'slang' ? 'Sesi Slang & Idiom direset.' : 'Sesi harian direset.');
+    showSimpleToast((listId === 'slang' ? 'Sesi Slang & Idiom direset.' : 'Sesi harian direset.') + (_unl.length ? ' ' + _unl.length + ' kata baru dikeluarkan dari Review/SRS.' : ''));
   }
 }
 
@@ -7252,6 +7534,30 @@ function goHome() { showTab('home'); }
 // Log aktivitas PER KATEGORI. state.dailyLog (global, data lama) tetap ada; sejak versi ini tiap jawaban
 // juga dicatat di state.dailyLogByList[kategori][tanggal]. Data lama yang belum punya rincian dihitung
 // sebagai Kosakata ('kata') supaya riwayat lama tidak hilang.
+// ── "HARI INI" = jumlah KATA BERBEDA yang dikerjakan hari ini (bukan jumlah jawaban).
+// Sumber tunggal: state.wordDayLog[hari ini][kategori] (daftar kata unik). Kata yang
+// diulang berkali-kali tetap 1; kategori yang di-reset dikosongkan dari log itu.
+function wvUniqueTodayCount(cat) {
+  var d = (state.wordDayLog || {})[todayStr()] || {};
+  if (cat) return (d[cat] || []).length;
+  return Object.keys(d).reduce(function(n, c) { return n + (d[c] || []).length; }, 0);
+}
+// Samakan log harian hari ini (dipakai grafik Progress & estimasi) dengan hitungan kata unik.
+function wvSyncTodayLogs() {
+  try {
+    var t = todayStr(), d = (state.wordDayLog || {})[t] || {};
+    if (!state.dailyLogByList) state.dailyLogByList = {};
+    var total = 0;
+    Object.keys(state.dailyLogByList).forEach(function(c) { if (!d[c]) delete state.dailyLogByList[c][t]; });
+    Object.keys(d).forEach(function(c) {
+      var n = (d[c] || []).length; total += n;
+      var o = state.dailyLogByList[c] || (state.dailyLogByList[c] = {});
+      if (n > 0) o[t] = n; else delete o[t];
+    });
+    if (!state.dailyLog) state.dailyLog = {};
+    if (total > 0) state.dailyLog[t] = total; else delete state.dailyLog[t];
+  } catch(e) {}
+}
 function wvLogFor(cat) {
   cat = cat || 'kata';
   var g = state.dailyLog || {}, by = state.dailyLogByList || {}, cats = Object.keys(by), mine = by[cat] || {}, out = {};
@@ -7648,7 +7954,8 @@ function updateHome() {
   }
   // Kotak "Hari Ini" = SEMUA kata yang dijawab hari ini (semua mode);
   // tugas harian per kategori ditampilkan terpisah di bawah angkanya.
-  const todayDone = (state.dailyLog && state.dailyLog[todayStr()]) || 0;
+  wvSyncTodayLogs();
+  const todayDone = wvUniqueTodayCount(homeStatsListId);
   // Sisa target di kartu SESI HARI INI dihitung PER KATEGORI yang aktif.
   const remaining = Math.max(0, getEffectiveGoalFor(homeStatsListId) - getTodayCountFor(homeStatsListId));
   const total = kataWords.length;
@@ -8698,7 +9005,7 @@ function renderFileDetailScreen() {
   if (!f) { showWordFilesScreen(); return; }
   if (titleEl) titleEl.textContent = f.name.toUpperCase();
 
-  var wordObjs = f.words.map(function(w){ return vocabFind(w); }).filter(Boolean);
+  var wordObjs = fileWordObjs(f);
   var masteredCount = wordObjs.filter(function(v){ return isWordMastered(v.word); }).length;
   var allMastered = wordObjs.length > 0 && masteredCount === wordObjs.length;
   var pct = wordObjs.length > 0 ? Math.round(masteredCount / wordObjs.length * 100) : 0;
@@ -9202,12 +9509,18 @@ function renderKosakataListTabs() {
   if (!getListById(kosakataViewMode) || (kosakataViewMode === 'slang' && !isSlangFeatureEnabled())) kosakataViewMode = 'kata';
   if (lists.length < 2) { wrap.innerHTML = ''; wrap.style.display = 'none'; return; }
   wrap.style.display = '';
-  wrap.innerHTML = lists.map(function(l) {
+  var sig = lists.map(function(l){ return l.id; }).join('|'), pos = 0;
+  lists.forEach(function(l, i){ if (l.id === kosakataViewMode) pos = i; });
+  var seg = wrap.querySelector('.kv-seg');
+  if (seg && seg.getAttribute('data-sig') === sig) {
+    seg.style.setProperty('--pos', pos);
+    Array.prototype.forEach.call(seg.children, function(btn, i){ btn.classList.toggle('on', i === pos); });
+    return;
+  }
+  wrap.innerHTML = '<div class="kv-seg" data-sig="' + sig + '" style="--n:' + lists.length + ';--pos:' + pos + '" role="group" aria-label="Jenis daftar">' + lists.map(function(l) {
     var active = kosakataViewMode === l.id;
-    var color = getListColor(l.id) || 'var(--accent)';
-    var styleAttr = active ? (' style="background:' + color + ';border-color:' + color + '"') : '';
-    return '<button type="button" class="kv-tab' + (active ? ' active' : '') + '"' + styleAttr + ' onclick="setKosakataViewMode(\'' + l.id + '\')">' + renderListIcon(l.icon, 14) + ' ' + cfEsc(l.name) + '</button>';
-  }).join('');
+    return '<button type="button" class="' + (active ? 'on' : '') + '" onclick="setKosakataViewMode(\'' + l.id + '\')">' + renderListIcon(l.icon, 14) + '<span>' + cfEsc(l.name) + '</span></button>';
+  }).join('') + '</div>';
 }
 
 // ── Modal "Tambah Daftar Baru" — nama bebas + ikon otomatis (bisa diganti) ──
@@ -9443,6 +9756,7 @@ function setKvDense(on) { kvDense = !!on; kvSavePrefs(); kvRefresh(true); }
 function kvResetFilters() {
   kosakataFilterMode = 'semua'; kvFileFilter = '';
   var si = document.getElementById('kosakataSearchInput'); if (si) si.value = '';
+  try { kvSyncSearchBar(); } catch(e) {}
   kvRefresh();
 }
 
@@ -9601,7 +9915,7 @@ function kvRenderChips(cmp) {
       }).join('')
       + (none ? '<button type="button" class="kv-chip' + (kvFileFilter === '__none' ? ' active' : '') + '" onclick="kvSetFile(\'__none\')">Tanpa file<span>' + none + '</span></button>' : '');
   } else if (kvFileFilter) { kvFileFilter = ''; }
-  host.innerHTML = '<div class="kv-chiprow">' + row1 + '</div>' + (row2 ? '<div class="kv-chiprow">' + row2 + '</div>' : '');
+  host.innerHTML = '<div class="kv-chiprow kv-grid3">' + row1 + '</div>' + (row2 ? '<div class="kv-chiprow kv-grid2">' + row2 + '</div>' : '');
 }
 
 function updateKosakataFilterDot() {
@@ -10148,7 +10462,7 @@ function renderWordFilesScreen() {
   }
 
   html += files.slice().sort(function(a,b){ return a.name.localeCompare(b.name); }).map(function(f) {
-    var wordObjs = f.words.map(function(w){ return vocabFind(w); }).filter(Boolean);
+    var wordObjs = fileWordObjs(f);
     var masteredCount = wordObjs.filter(function(v){ return isWordMastered(v.word); }).length;
     var allMastered = wordObjs.length > 0 && masteredCount === wordObjs.length;
     var pct = wordObjs.length > 0 ? Math.round(masteredCount / wordObjs.length * 100) : 0;
@@ -12108,7 +12422,7 @@ createFlashcardSwipeEngine({
   window.srsUpdate = function(wordKey, quality) {
     if (window._srsGradeOverride) { quality = window._srsGradeOverride; window._srsGradeOverride = null; }
     if (!state.learned[wordKey]) {
-      state.learned[wordKey] = { interval:0, easeFactor:2.5, repetitions:0, nextReview:0, lastSeen:0, mastered:false, count:0, queue:'new', lapses:0, learningStep:0, leechClearedAtLapses:0, leechStreak:0 };
+      state.learned[wordKey] = { interval:0, easeFactor:2.5, repetitions:0, nextReview:0, lastSeen:0, mastered:false, count:0, queue:'new', lapses:0, learningStep:0, leechClearedAtLapses:0, leechStreak:0, introDate: todayStr() };
     }
     var card = ensureCardShape(state.learned[wordKey]);
     card.lastSeen = Date.now();
@@ -14301,6 +14615,7 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
   }
 
   window.renderProgressScreen=function(){
+    try{ wvSyncTodayLogs(); }catch(e){}
     var el=document.getElementById('progressContent'); if(!el) return;
     var tabs=isSlangFeatureEnabled();
     if(!tabs||(progressActiveTab!=='kata'&&progressActiveTab!=='slang')) progressActiveTab='kata';
@@ -14404,10 +14719,10 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
     if (lists.length < 2) { host.innerHTML = ''; return; }
     var cur = activeListId(), counts = {};
     getMasteredWords().forEach(function(v){ var k = v.listId || 'kata'; counts[k] = (counts[k] || 0) + 1; });
-    host.innerHTML = lists.map(function(l){
-      return '<button type="button" class="prog-tab-switch-btn' + (cur === l.id ? ' active' : '') + '" data-act="tab" data-l="' + esc(l.id) + '">'
-        + renderListIcon(l.icon, 14) + ' ' + esc(l.name) + ' <em>' + (counts[l.id] || 0) + '</em></button>';
-    }).join('');
+    var pos = 0; lists.forEach(function(l, i){ if (l.id === cur) pos = i; });
+    host.innerHTML = '<div class="kv-seg" style="--n:' + lists.length + ';--pos:' + pos + '" role="group" aria-label="Jenis daftar">' + lists.map(function(l){
+      return '<button type="button" class="' + (cur === l.id ? 'on' : '') + '" data-act="tab" data-l="' + esc(l.id) + '">' + esc(l.name) + ' <em>' + (counts[l.id] || 0) + '</em></button>';
+    }).join('') + '</div>';
   }
 
   // ── hero + tile ─────────────────────────────────────────
@@ -14429,10 +14744,11 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
       : fade ? '<b>' + fade + ' kata</b> mulai memudar — coba <b>Cek Ingatan</b> di bawah.'
       : 'Semua kata masih kuat. Pertahankan ritmenya.';
     var gid = 'hxG';
-    var h = '<div class="settings-card pg-card pg-hero"><div class="pg-top"><div class="pg-ring"><svg viewBox="0 0 96 96"><defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent2)"/></linearGradient></defs><circle class="bg" cx="48" cy="48" r="40"/><circle class="fg" cx="48" cy="48" r="40" stroke="url(#' + gid + ')" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + off + '"/></svg><div class="pg-ring-c"><b>' + pct + '%</b><span>hafal</span></div></div>'
-      + '<div class="pg-hx"><span class="pg-lv">' + lvl + '</span><div class="pg-big">' + n + '<small>dari ' + total + ' kata</small></div><div class="pg-nx"><i style="width:' + avgI + '%"></i></div><div class="pg-eta">' + eta + '</div></div></div>'
-      + '<div class="pg-mini"><div><b>' + avgI + '%</b><span>Ingatan</span></div><div><b>' + ivAvg + 'h</b><span>Interval</span></div><div' + (fade ? ' class="hot"' : '') + '><b>' + fade + '</b><span>Memudar</span></div></div></div>'
-      + '<div class="pg-tiles">'
+    var stats = !n ? '<span>Selesaikan sesi Harian sampai kata naik jadi hafal.</span>'
+      : '<span><b>' + avgI + '%</b> ingatan</span><span><b>' + ivAvg + 'h</b> interval</span><span' + (fade ? ' class="hot"' : '') + '><b>' + fade + '</b> memudar</span>';
+    var h = '<div class="settings-card pg-card pg-hero"><div class="pg-top"><div class="pg-ring"><svg viewBox="0 0 96 96"><defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--accent)"/><stop offset="1" stop-color="var(--accent2)"/></linearGradient></defs><circle class="bg" cx="48" cy="48" r="40"/><circle class="fg" cx="48" cy="48" r="40" stroke="url(#' + gid + ')" stroke-dasharray="' + C.toFixed(1) + '" stroke-dashoffset="' + off + '"/></svg><div class="pg-ring-c"><b>' + pct + '%</b></div></div>'
+      + '<div class="pg-hx"><div class="hx-h1"><div class="pg-big">' + n + '<small>dari ' + total + ' kata</small></div><span class="pg-lv">' + lvl + '</span></div><div class="pg-nx"><i style="width:' + avgI + '%"></i></div><div class="hx-h3">' + stats + '</div></div></div></div>'
+      + '<div class="hx-fcs">'
       + tile('fade', '#FF8A1F', I.drop, fade, 'Memudar', 'ingatan < 80%')
       + tile('strong', '#30D158', I.shield, strong, 'Kuat', 'ingatan ≥ 90%')
       + tile('fav', '#FFC53D', I.star, favN, 'Favorit', 'bintang kamu')
@@ -14440,7 +14756,7 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
     host.innerHTML = h;
   }
   function tile(f, c, path, num, label, hint){
-    return '<button type="button" class="pg-tile' + (filt === f ? ' hx-tile-on' : '') + '" data-act="filt" data-f="' + f + '" style="--c:' + c + '"><span class="ic"><svg class="pg-i" viewBox="0 0 24 24">' + path + '</svg></span><b>' + num + '</b><span class="l">' + label + '</span><span class="h">' + hint + '</span></button>';
+    return '<button type="button" class="hx-fc' + (filt === f ? ' hx-tile-on' : '') + '" data-act="filt" data-f="' + f + '" title="' + hint + '" style="--c:' + c + '"><svg class="pg-i" viewBox="0 0 24 24">' + path + '</svg><b>' + num + '</b><span>' + label + '</span></button>';
   }
 
   // ── panel urut & filter ─────────────────────────────────
@@ -14452,13 +14768,13 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
   function renderPanel(){
     var p = $('hafalFilterPanel'); if (!p) return;
     var files = (typeof getFilesForList === 'function') ? getFilesForList(activeListId()) : [];
-    var h = '<div class="fd-filter-panel-label">URUTKAN</div>'
-      + seg('sort', sort, [['recent', 'Terbaru dilihat'], ['oldest', 'Paling lama'], ['weak', 'Paling lemah'], ['az', 'A–Z'], ['za', 'Z–A']])
-      + '<div class="fd-filter-panel-label">MODE TES</div>'
-      + seg('mask', mask, [['off', 'Normal'], ['meaning', 'Tutup arti'], ['word', 'Tutup kata']]);
+    var h = '<div class="hx-psec"><div class="fd-filter-panel-label">URUTKAN</div>'
+      + seg('sort', sort, [['recent', 'Terbaru dilihat'], ['oldest', 'Paling lama'], ['weak', 'Paling lemah'], ['az', 'A\u2013Z'], ['za', 'Z\u2013A']]) + '</div>'
+      + '<div class="hx-psec"><div class="fd-filter-panel-label">MODE TES</div>'
+      + seg('mask', mask, [['off', 'Normal'], ['meaning', 'Tutup arti'], ['word', 'Tutup kata']]) + '</div>';
     if (files && files.length) {
-      h += '<div class="fd-filter-panel-label">KELOMPOK</div>'
-        + seg('file', fileF, [['', 'Semua']].concat(files.map(function(f){ return [f.id, esc(f.name)]; })));
+      h += '<div class="hx-psec"><div class="fd-filter-panel-label">KELOMPOK</div>'
+        + seg('file', fileF, [['', 'Semua']].concat(files.map(function(f){ return [f.id, esc(f.name)]; }))) + '</div>';
     }
     p.innerHTML = h;
     p.style.display = panelOpen ? 'block' : 'none';
@@ -14478,7 +14794,7 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
     host.innerHTML = '<div class="hx-acts">'
       + '<button type="button" class="sx-btn p" data-act="review"' + dis + '><svg viewBox="0 0 24 24">' + I.play + '</svg> Ulangi ' + rows.length + '</button>'
       + '<button type="button" class="sx-btn" data-act="check"' + dis + '><svg viewBox="0 0 24 24">' + I.drop + '</svg> Cek Ingatan</button>'
-      + '<button type="button" class="sx-btn" data-act="copy"' + dis + ' style="flex:0 0 auto" title="Salin daftar"><svg viewBox="0 0 24 24">' + I.copy + '</svg></button>'
+      + '<button type="button" class="sx-btn" data-act="copy"' + dis + ' style="flex:0 0 auto" title="Salin &amp; bagikan"><svg viewBox="0 0 24 24">' + I.copy + '</svg> Salin</button>'
       + '</div>';
   }
 
@@ -14534,8 +14850,9 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
       if (alpha) { var L = letterOf(e.v.word); if (L !== lastL) { html += '<div class="hx-letter">' + L + '<span>' + cnt[L] + '</span></div>'; lastL = L; } }
       html += rowHTML(e);
     });
-    if (rows.length > shown.length) html += '<button type="button" class="hx-more" data-act="more">Tampilkan ' + Math.min(STEP, rows.length - shown.length) + ' lagi (' + (rows.length - shown.length) + ' tersisa)</button>';
-    host.innerHTML = info + html;
+    var more = '';
+    if (rows.length > shown.length) more = '<button type="button" class="hx-more" data-act="more">Tampilkan ' + Math.min(STEP, rows.length - shown.length) + ' lagi (' + (rows.length - shown.length) + ' tersisa)</button>';
+    host.innerHTML = info + '<div class="settings-card hx-list">' + html + '</div>' + more;
   }
   function letterOf(w){ var c = (w || '').trim().charAt(0).toUpperCase(); return /[A-Z]/.test(c) ? c : '#'; }
 
@@ -14552,6 +14869,7 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
       + '<button type="button" class="sx-btn" data-act="selall">' + (rows.length && rows.every(function(e){ return sel[e.v.word]; }) ? 'Lepas' : 'Semua') + '</button>'
       + '<span class="sp"></span>'
       + '<button type="button" class="sx-btn" data-act="selfav"' + dis + '>★</button>'
+      + '<button type="button" class="sx-btn" data-act="selcopy"' + dis + ' title="Salin &amp; bagikan"><svg viewBox="0 0 24 24" width="13" height="13" style="fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:-2px">' + I.copy + '</svg></button>'
       + '<button type="button" class="sx-btn" data-act="selrelearn"' + dis + '>Belajar lagi</button>'
       + '<button type="button" class="sx-btn p" data-act="selreview"' + dis + '>Ulangi</button>'
       + '<button type="button" class="sx-btn" data-act="selcancel">✕</button>';
@@ -14610,6 +14928,127 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
     return Object.keys(sel).filter(function(k){ return have[k]; });
   }
 
+  // ── salin & bagikan (lembar bawah, sama seperti Kosakata Harian) ──
+  var CP = { rows: [], title: '', sub: '', meaning: true, fmt: 'num', lim: 300 }, cpTimer = 0, PKEY = 'wvd_prefs_v1';
+  try { var cps = JSON.parse(localStorage.getItem(PKEY) || '{}'); if (typeof cps.meaning === 'boolean') CP.meaning = cps.meaning; if (cps.fmt) CP.fmt = cps.fmt; } catch(e){}
+  function cpSave(){ try { var o = JSON.parse(localStorage.getItem(PKEY) || '{}'); o.meaning = CP.meaning; o.fmt = CP.fmt; localStorage.setItem(PKEY, JSON.stringify(o)); } catch(e){} }
+  function cpOne(e){ var v = e.v; return (CP.meaning && v.meaning) ? v.word + ' — ' + v.meaning : v.word; }
+  function cpLine(e, i){
+    var v = e.v, m = (CP.meaning && v.meaning) ? v.meaning : '';
+    if (CP.fmt === 'tab') return v.word + (CP.meaning ? '\t' + m : '');
+    return (CP.fmt === 'dot' ? '• ' : (i + 1) + '. ') + (m ? v.word + ' — ' + m : v.word);
+  }
+  function cpText(){
+    var rows = CP.rows.map(cpLine).join('\n');
+    return CP.fmt === 'tab' ? rows : CP.title + ' (' + CP.rows.length + ' kata)\n' + rows;
+  }
+  function cpCopy(t){
+    if (navigator.clipboard && window.isSecureContext) return navigator.clipboard.writeText(t).then(function(){ return true; }, function(){ fallbackCopy(t); return true; });
+    fallbackCopy(t); return Promise.resolve(true);
+  }
+  function cpStatus(m, kind){
+    var el = $('hxsStatus'); if (!el) return;
+    clearTimeout(cpTimer); el.textContent = m; el.className = 'hxs-status ' + (kind || '');
+    cpTimer = setTimeout(function(){ var e2 = $('hxsStatus'); if (e2) { e2.textContent = 'Ketuk kata untuk menyalin satu per satu'; e2.className = 'hxs-status'; } }, 2400);
+  }
+  function cpBuzz(n){ try { if (navigator.vibrate) navigator.vibrate(n || 8); } catch(e){} }
+  function cpCss(){
+    if ($('hxsCss')) return;
+    var st = document.createElement('style'); st.id = 'hxsCss';
+    st.textContent = [
+      '#hxCopy{position:fixed;inset:0;z-index:99997;background:rgba(0,0,0,.6);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);display:flex;align-items:flex-end;justify-content:center;font-family:var(--font-body);animation:hxsFade .2s ease both}',
+      '#hxCopy.out{animation:hxsFadeO .18s ease both}#hxCopy.out .hxs-sheet{animation:hxsDown .18s ease both}',
+      '#hxCopy *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}',
+      '@keyframes hxsFade{from{opacity:0}to{opacity:1}}@keyframes hxsFadeO{to{opacity:0}}@keyframes hxsUp{from{transform:translateY(100%)}to{transform:none}}@keyframes hxsDown{to{transform:translateY(100%)}}',
+      '#hxCopy .hxs-sheet{position:relative;width:100%;max-width:520px;height:min(86vh,760px);display:flex;flex-direction:column;overflow:hidden;color:var(--text);background:var(--bg2);border:1px solid var(--border-light);border-bottom:0;border-radius:20px 20px 0 0;box-shadow:0 -16px 50px rgba(0,0,0,.55);animation:hxsUp .3s cubic-bezier(.2,.9,.25,1) both}',
+      '#hxCopy .hxs-grab{display:flex;justify-content:center;padding:6px 0 0}#hxCopy .hxs-grab i{width:34px;height:3px;border-radius:9px;background:rgba(255,255,255,.18)}',
+      '#hxCopy .hxs-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:4px 14px 8px 16px}',
+      '#hxCopy .hxs-title{font:700 16px/1.15 var(--font-head);white-space:nowrap}#hxCopy .hxs-sub{font-size:11px;font-weight:500;color:var(--text3);margin-top:2px}',
+      '#hxCopy .hxs-x{flex:none;width:28px;height:28px;border-radius:50%;border:1px solid var(--border-light);background:var(--surface-raised);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}',
+      '#hxCopy .hxs-scroll{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:2px 14px 10px}',
+      '#hxCopy .hxs-card{border:1px solid var(--border-light);border-radius:12px;background:var(--surface-raised);overflow:hidden}',
+      '#hxCopy .hxs-item{width:100%;display:flex;align-items:baseline;gap:8px;text-align:left;margin:0;padding:6px 12px 6px 8px;border:0;border-bottom:1px solid var(--border-light);background:transparent;color:var(--text);font-family:var(--font-body);cursor:pointer;transition:background .15s}',
+      '#hxCopy .hxs-item:last-child{border-bottom:0}#hxCopy .hxs-item:active,#hxCopy .hxs-item.cp{background:rgba(255,255,255,.09)}',
+      '#hxCopy .hxs-n{flex:none;width:26px;text-align:right;font:600 10.5px var(--font-body);font-variant-numeric:tabular-nums;color:var(--text3)}',
+      '#hxCopy .hxs-w{flex:0 1 38%;min-width:0;font:700 13.5px/1.3 var(--font-head);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+      '#hxCopy .hxs-m{flex:1;min-width:0;font-size:12px;color:var(--text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+      '#hxCopy .hxs-more{width:100%;margin:8px 0 0;padding:10px;border-radius:12px;border:1px solid var(--border-light);background:transparent;color:var(--text2);font:700 12px var(--font-body);cursor:pointer}',
+      '#hxCopy .hxs-foot{position:relative;flex:none;display:flex;flex-direction:column;gap:7px;padding:8px 14px calc(10px + env(safe-area-inset-bottom,0px));border-top:1px solid var(--border-light);background:var(--bg2)}',
+      '#hxCopy .hxs-opts{display:flex;align-items:center;justify-content:space-between;gap:10px}',
+      '#hxCopy .hxs-sw{display:flex;align-items:center;gap:8px;border:0;background:none;color:var(--text2);font:600 12.5px var(--font-body);cursor:pointer;padding:2px 0}',
+      '#hxCopy .hxs-sw i{position:relative;width:32px;height:19px;border-radius:99px;background:rgba(255,255,255,.16);transition:background .2s}#hxCopy .hxs-sw i::after{content:"";position:absolute;top:2px;left:2px;width:15px;height:15px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.4);transition:transform .2s}',
+      '#hxCopy .hxs-sw.on i{background:var(--accent)}#hxCopy .hxs-sw.on i::after{transform:translateX(13px);background:var(--accent-inv)}#hxCopy .hxs-sw.on{color:var(--text)}',
+      '#hxCopy .hxs-fmt{display:flex;padding:2px;border-radius:9px;background:rgba(255,255,255,.06);border:1px solid var(--border-light)}',
+      '#hxCopy .hxs-fmt button{border:0;background:transparent;color:var(--text3);min-width:34px;padding:3px 8px;border-radius:7px;font:700 12px var(--font-body);cursor:pointer}#hxCopy .hxs-fmt button.on{background:rgba(255,255,255,.14);color:var(--text)}',
+      '#hxCopy .hxs-btns{display:flex;gap:10px}',
+      '#hxCopy .hxs-copy{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:12px;padding:11px;background:var(--accent);color:var(--accent-inv);font:700 14px var(--font-body);cursor:pointer}#hxCopy .hxs-copy:active{transform:scale(.98)}',
+      '#hxCopy .hxs-share{flex:none;width:44px;border-radius:12px;border:1px solid var(--border-light);background:var(--surface-raised);color:var(--text);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}#hxCopy .hxs-share:active{transform:scale(.94)}',
+      '#hxCopy .hxs-status{font-size:11.5px;font-weight:600;color:var(--text3);text-align:center;min-height:15px}#hxCopy .hxs-status.ok{color:var(--green-text,#30D158)}#hxCopy .hxs-status.err{color:var(--red-text,#FF5C5C)}'
+    ].join('');
+    document.head.appendChild(st);
+  }
+  function cpRender(){
+    var host = $('hxsList'); if (!host) return;
+    var n = CP.rows.length, shown = CP.rows.slice(0, CP.lim);
+    host.innerHTML = '<div class="hxs-card">' + shown.map(function(e, i){
+      return '<button type="button" class="hxs-item" data-ca="one" data-i="' + i + '"><span class="hxs-n">' + (i + 1) + '</span><span class="hxs-w">' + esc(e.v.word) + '</span><span class="hxs-m">' + esc(e.v.meaning || '') + '</span></button>';
+    }).join('') + '</div>' + (n > shown.length ? '<button type="button" class="hxs-more" data-ca="more">Tampilkan lebih banyak (' + (n - shown.length) + ' lagi)</button>' : '');
+    var op = $('hxsOpts');
+    if (op) op.innerHTML = '<button type="button" class="hxs-sw' + (CP.meaning ? ' on' : '') + '" data-ca="mean"><i></i>Sertakan arti</button>'
+      + '<div class="hxs-fmt">'
+      + '<button type="button" class="' + (CP.fmt === 'num' ? 'on' : '') + '" data-ca="fmt" data-v="num" title="Bernomor">1.</button>'
+      + '<button type="button" class="' + (CP.fmt === 'dot' ? 'on' : '') + '" data-ca="fmt" data-v="dot" title="Poin">•</button>'
+      + '<button type="button" class="' + (CP.fmt === 'tab' ? 'on' : '') + '" data-ca="fmt" data-v="tab" title="Dipisah tab (untuk spreadsheet)">Tab</button></div>';
+    var ft = $('hxsFoot');
+    if (ft) ft.innerHTML = '<button type="button" class="hxs-copy" data-ca="all"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">' + I.copy + '</svg>Salin semua (' + n + ')</button>'
+      + '<button type="button" class="hxs-share" data-ca="share" aria-label="Bagikan" title="Bagikan"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3M8 7l4-4 4 4"/><path d="M5 12v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg></button>';
+  }
+  function cpClose(){
+    var o = $('hxCopy'); document.removeEventListener('keydown', cpKey);
+    if (!o || o.classList.contains('out')) return;
+    o.classList.add('out'); setTimeout(function(){ if (o.parentNode) o.remove(); }, 210);
+  }
+  function cpKey(e){ if (e.key === 'Escape') cpClose(); }
+  function cpClick(e){
+    var o = $('hxCopy'); if (!o) return;
+    if (e.target === o) { cpClose(); return; }
+    var b = e.target.closest ? e.target.closest('[data-ca]') : null; if (!b) return;
+    var a = b.getAttribute('data-ca'), v = b.getAttribute('data-v');
+    if (a === 'close') cpClose();
+    else if (a === 'mean') { CP.meaning = !CP.meaning; cpSave(); cpRender(); }
+    else if (a === 'fmt') { CP.fmt = v; cpSave(); cpRender(); }
+    else if (a === 'more') { CP.lim += 300; cpRender(); }
+    else if (a === 'all') {
+      cpCopy(cpText()).then(function(ok){ if (ok) { cpBuzz(12); cpStatus(CP.rows.length + ' kata tersalin', 'ok'); } else cpStatus('Gagal menyalin, coba lagi', 'err'); });
+    }
+    else if (a === 'share') {
+      var t = cpText();
+      if (navigator.share) navigator.share({ text: t }).catch(function(){});
+      else cpCopy(t).then(function(){ cpStatus(CP.rows.length + ' kata tersalin', 'ok'); });
+    }
+    else if (a === 'one') {
+      var en = CP.rows[+b.getAttribute('data-i')]; if (!en) return;
+      cpCopy(cpOne(en)).then(function(ok){ if (ok) { cpBuzz(10); cpStatus('Disalin: ' + en.v.word, 'ok'); b.classList.add('cp'); setTimeout(function(){ b.classList.remove('cp'); }, 450); } });
+    }
+  }
+  function openCopy(rows, title, sub){
+    if (!rows || !rows.length) { toast('Belum ada kata untuk disalin.'); return; }
+    var old = $('hxCopy'); if (old) old.remove();
+    cpCss(); cpBuzz(6);
+    CP.rows = rows; CP.title = title; CP.lim = 300;
+    var o = document.createElement('div'); o.id = 'hxCopy';
+    o.innerHTML = '<div class="hxs-sheet" role="dialog" aria-modal="true" aria-label="Salin kosakata">'
+      + '<div class="hxs-grab"><i></i></div>'
+      + '<div class="hxs-head"><div><div class="hxs-title">Salin Kosakata</div><div class="hxs-sub">' + esc(sub || (rows.length + ' kata')) + '</div></div><button type="button" class="hxs-x" data-ca="close" aria-label="Tutup"><svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button></div>'
+      + '<div class="hxs-scroll"><div id="hxsList"></div></div>'
+      + '<div class="hxs-foot"><div class="hxs-status" id="hxsStatus">Ketuk kata untuk menyalin satu per satu</div><div class="hxs-opts" id="hxsOpts"></div><div class="hxs-btns" id="hxsFoot"></div></div></div>';
+    o.addEventListener('click', cpClick);
+    document.body.appendChild(o);
+    document.addEventListener('keydown', cpKey);
+    cpRender();
+  }
+  function listName(){ var lm = getListById(activeListId()) || { name: 'Kosakata' }; return lm.name; }
+
   // ── event delegasi ──────────────────────────────────────
   function onClick(e){
     var t = e.target.closest ? e.target.closest('[data-act]') : null;
@@ -14622,7 +15061,7 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
       case 'sort': sort = t.getAttribute('data-v'); lset('sort', sort); render(); break;
       case 'mask': mask = t.getAttribute('data-v'); revealed = {}; render(); break;
       case 'file': fileF = t.getAttribute('data-v'); render(); break;
-      case 'resetf': filt = 'all'; fileF = ''; query = ''; var si = $('hafalSearchInput'); if (si) si.value = ''; render(); break;
+      case 'resetf': filt = 'all'; fileF = ''; query = ''; var si = $('hafalSearchInput'); if (si) si.value = ''; try { hxSyncSearch(); } catch(e) {} render(); break;
       case 'start': showTab('home'); break;
       case 'more': window.loadMoreHafalWords(); break;
       case 'review': startReview(rows); break;
@@ -14630,11 +15069,10 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
         var lowest = rows.slice().sort(function(a, b){ return a.r - b.r; }).slice(0, Math.max(5, Math.min(20, (typeof DAILY_GOAL === 'number' ? DAILY_GOAL : 10))));
         startReview(lowest, 'Cek Ingatan'); break;
       case 'copy':
-        var txt = rows.map(function(x){ return x.v.word + ' — ' + (x.v.meaning || ''); }).join('\n');
-        var done = function(){ toast(rows.length + ' kata disalin.'); };
-        if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, function(){ fallbackCopy(txt); done(); });
-        else { fallbackCopy(txt); done(); }
-        break;
+        openCopy(rows, 'Kata Hafal \u00b7 ' + listName(), rows.length + ' kata' + (rows.length !== (cache ? cache.all.length : rows.length) ? ' (hasil filter)' : '') + ' \u00b7 ' + listName()); break;
+      case 'selcopy':
+        var cw = wordsFromSel();
+        openCopy((cache ? cache.all : []).filter(function(x){ return cw.indexOf(x.v.word) !== -1; }), 'Kata Terpilih \u00b7 ' + listName(), cw.length + ' kata terpilih \u00b7 ' + listName()); break;
       case 'selmode': selMode = !selMode; sel = {}; openW = null; render(null, true); break;
       case 'selall':
         var allOn = rows.length && rows.every(function(x){ return sel[x.v.word]; });
@@ -14675,6 +15113,15 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
   function init(){
     var scr = $('screenHafal');
     if (scr && !scr._hxBound) { scr._hxBound = true; scr.addEventListener('click', onClick); }
+    if (!document._hxPopBound) {
+      document._hxPopBound = true;
+      document.addEventListener('click', function(e){
+        if (!panelOpen) return;
+        var path = e.composedPath ? e.composedPath() : [];
+        for (var i = 0; i < path.length; i++) { var id = path[i] && path[i].id; if (id === 'hafalFilterPanel' || id === 'hafalFilterToggleBtn') return; }
+        panelOpen = false; renderPanel();
+      });
+    }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
 })();
@@ -15078,7 +15525,7 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
 (function(){
   'use strict';
   var KEEP_DAYS = 90, PK = 'wvd_prefs_v1';
-  var ui = { tab: 'today', cat: null, meaning: true, fmt: 'num', q: '' };
+  var ui = { tab: 'today', cat: null, meaning: true, fmt: 'num', q: '', selMode: false, sel: {} };
   try { var sp = JSON.parse(localStorage.getItem(PK) || '{}'); if (typeof sp.meaning === 'boolean') ui.meaning = sp.meaning; if (sp.fmt) ui.fmt = sp.fmt; } catch(e){}
   function savePrefs(){ try { localStorage.setItem(PK, JSON.stringify({ meaning: ui.meaning, fmt: ui.fmt })); } catch(e){} }
   var $ = function(id){ return document.getElementById(id); };
@@ -15109,20 +15556,44 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
   function dateLong(s){ try { return ymd(s).toLocaleDateString('id-ID', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }); } catch(e){ return s; } }
   function dateShort(s){ try { return ymd(s).toLocaleDateString('id-ID', { weekday: 'short', day: 'numeric', month: 'short' }); } catch(e){ return s; } }
 
+  // Jatah harian dibuat OTOMATIS saat daftar dibuka (tanpa tombol). Disimpan di cache
+  // harian yang sama dengan sesi belajar, jadi tetap sama walau app ditutup-buka.
+  // Sebelum sesi dimulai, sumber (file) belum dikunci: pindah file di beranda =
+  // jatah menyesuaikan. Begitu sesi dimulai (ada jawaban / sesi aktif), sumber
+  // terkunci dan jatah tidak berubah lagi sampai ganti hari.
+  var skMemo = {};
+  function sessionStarted(cat){
+    var st = (state.dailySessionStatusByList || {})[cat], ac = (state.dailySessionActiveByList || {})[cat], n = (state.todayCountByList || {})[cat] || 0;
+    return !!(st || ac || n > 0);
+  }
   function sessionKeys(cat){
+    if (skMemo[cat]) return skMemo[cat].slice();
     try { ensureTodayIsFresh(); } catch(e){}
-    var lock = (state.dailySessionLockedScopes || {})[cat], sc = state.dailySessionScoped || {}, e = null;
-    if (lock && sc[lock]) e = sc[lock]; else if (cat !== 'kata') e = sc['list:' + cat];
-    if (e && e.date === todayStr() && e.words && e.words.length) return e.words.slice();
-    if (cat === 'kata' && state.todayDate === todayStr() && state.dailySessionWords && state.dailySessionWords.length) return state.dailySessionWords.slice();
-    return [];
+    var L = state.dailySessionLockedScopes || (state.dailySessionLockedScopes = {});
+    var had = L[cat] || null, keys = [];
+    try { keys = (getDailyWords(cat) || []).map(function(w){ return w.word; }); } catch(e){ console.warn(e); }
+    var key = L[cat] || null, sc = state.dailySessionScoped || {};
+    if (key && sc[key] && sc[key].date === todayStr() && sc[key].words && sc[key].words.length) keys = sc[key].words.slice();
+    else if (cat === 'kata' && (!key || key === 'kata') && state.todayDate === todayStr() && state.dailySessionWords && state.dailySessionWords.length) keys = state.dailySessionWords.slice();
+    // belum dimulai & sebelumnya tidak terkunci -> jangan kunci hanya karena melihat daftar
+    if (!had && !sessionStarted(cat)) { delete L[cat]; try { saveState(); } catch(e){} }
+    skMemo[cat] = keys;
+    return keys.slice();
   }
   function doneToday(){ return ((dayLog()[todayStr()] || {})[ui.cat]) || []; }
   function mastered(k){ try { return isWordMastered(k); } catch(e){ return false; } }
+  // Sering salah = jawaban 'Belum' di mode apa pun (srsUpdate satu-satunya jalur) >= WRONG_MIN
+  var WRONG_MIN = 3;
+  function wrongOf(k){ var c = (state.learned || {})[k]; if (!c) return 0; var l = c.lapses || 0; return (c.fails != null) ? Math.max(c.fails, l) : l; }
+  function inCat(k){ var v = (typeof vocabFind === 'function') ? vocabFind(k) : null; return !!v && (v.listId || 'kata') === ui.cat; }
+  function hafalKeys(){ return Object.keys(state.learned || {}).filter(function(k){ return state.learned[k] && state.learned[k].mastered && inCat(k); }).sort(function(a, b){ return a.localeCompare(b); }); }
+  function salahKeys(){ return Object.keys(state.learned || {}).filter(function(k){ return wrongOf(k) >= WRONG_MIN && inCat(k); }).sort(function(a, b){ return wrongOf(b) - wrongOf(a) || a.localeCompare(b); }); }
   function info(k){ var v = (typeof vocabFind === 'function') ? vocabFind(k) : null; v = v || {}; return { word: v.word || k, meaning: v.meaning || '', pron: v.pronunciation || '', pos: (v.pos && window.WV_POS && WV_POS[v.pos]) ? WV_POS[v.pos].label : '' }; }
 
   function rawGroups(){
     var t = todayStr();
+    if (ui.tab === 'hafal') return [{ date: t, label: 'Kata Hafal', keys: hafalKeys() }].filter(function(g){ return g.keys.length; });
+    if (ui.tab === 'salah') return [{ date: t, label: 'Sering Salah (\u2265' + WRONG_MIN + '\u00d7)', keys: salahKeys() }].filter(function(g){ return g.keys.length; });
     if (ui.tab === 'today') return [{ date: t, keys: sessionKeys(ui.cat), today: true }];
     var L = dayLog();
     return Object.keys(L).sort().reverse().map(function(d){ return { date: d, keys: (L[d] && L[d][ui.cat]) || [], today: d === t }; })
@@ -15133,10 +15604,17 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
     var gs = rawGroups();
     if (!q) return gs;
     return gs.map(function(g){
-      return { date: g.date, today: g.today, keys: g.keys.filter(function(k){ var i = info(k); return i.word.toLowerCase().indexOf(q) !== -1 || i.meaning.toLowerCase().indexOf(q) !== -1; }) };
+      return { date: g.date, today: g.today, label: g.label, keys: g.keys.filter(function(k){ var i = info(k); return i.word.toLowerCase().indexOf(q) !== -1 || i.meaning.toLowerCase().indexOf(q) !== -1; }) };
     }).filter(function(g){ return g.keys.length; });
   }
   function count(gs){ return gs.reduce(function(a, g){ return a + g.keys.length; }, 0); }
+  function allKeys(){ var seen = {}, out = []; groups().forEach(function(g){ g.keys.forEach(function(k){ if (!seen[k]) { seen[k] = 1; out.push(k); } }); }); return out; }
+  // Mode pilih: hanya kata terpilih yang disalin/dibagikan
+  function activeGroups(){
+    if (!ui.selMode) return groups();
+    var ks = allKeys().filter(function(k){ return ui.sel[k]; });
+    return ks.length ? [{ date: todayStr(), label: 'Kata Terpilih', keys: ks }] : [];
+  }
 
   // ── Format teks untuk Catatan ──
   function line(k, i){
@@ -15148,6 +15626,7 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
   function groupText(g){
     var rows = g.keys.map(function(k, i){ return line(k, i); }).join('\n');
     if (ui.fmt === 'tab') return rows;
+    if (g.label) return g.label + ' (' + g.keys.length + ' kata)\n' + rows;
     return (g.today ? 'Sesi Hari Ini \u00b7 ' : '') + dateLong(g.date) + ' (' + g.keys.length + ' kata)\n' + rows;
   }
   function fullText(gs){ return gs.map(groupText).join('\n\n'); }
@@ -15188,7 +15667,7 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
     });
   }
   function doShare(){
-    var gs = groups(); if (!count(gs)) return;
+    var gs = activeGroups(); if (!count(gs)) return;
     var t = fullText(gs);
     if (navigator.share) navigator.share({ text: t }).catch(function(){});
     else doCopy(gs);
@@ -15260,6 +15739,21 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
       "#wvDaily .wvd-status .ic{display:none;flex:none}#wvDaily .wvd-status .t{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}",
       "#wvDaily .wvd-status.ok,#wvDaily .wvd-status.err{display:flex}#wvDaily .wvd-status.ok{background:linear-gradient(rgba(48,209,88,.16),rgba(48,209,88,.16)),var(--bg2);color:var(--green-text)}#wvDaily .wvd-status.ok .ic{display:flex}",
       "#wvDaily .wvd-status.err{background:linear-gradient(rgba(255,92,92,.14),rgba(255,92,92,.14)),var(--bg2);color:var(--red-text)}",
+      "#wvDaily .wvd-row{flex-wrap:wrap;row-gap:6px}#wvDaily .wvd-ctl{flex:1 0 100%}#wvDaily .wvd-tools{flex:1 0 100%;display:flex;gap:6px}#wvDaily .wvd-search{flex:1;min-width:0}",
+      "#wvDaily .wvd-seg{grid-template-columns:repeat(var(--n,2),1fr)}#wvDaily .wvd-seg::before{width:calc((100% - 4px) / var(--n,2))}#wvDaily .wvd-seg[data-pos=\"2\"]::before{transform:translateX(200%)}#wvDaily .wvd-seg[data-pos=\"3\"]::before{transform:translateX(300%)}#wvDaily .wvd-seg button{padding:6px 4px;font-size:11.5px;white-space:nowrap}",
+      "#wvDaily .wvd-selbtn{flex:none;width:30px;height:30px;border-radius:9px;border:1px solid var(--border-light);background:var(--surface-raised);color:var(--text2);display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0}#wvDaily .wvd-selbtn.on{background:var(--accent);border-color:var(--accent);color:var(--accent-inv)}",
+      "#wvDaily .wvd-ck{display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:50%;border:1.6px solid var(--text3);vertical-align:middle}#wvDaily .wvd-ck svg{width:11px;height:11px;opacity:0;stroke:var(--accent-inv);fill:none;stroke-width:3.2;stroke-linecap:round;stroke-linejoin:round}",
+      "#wvDaily .wvd-item.sel .wvd-ck{background:var(--accent);border-color:var(--accent)}#wvDaily .wvd-item.sel .wvd-ck svg{opacity:1}#wvDaily .wvd-item.sel{box-shadow:inset 3px 0 0 var(--accent)}#wvDaily .wvd-item.sel:active,#wvDaily .wvd-item.sel.cp{background:transparent}",
+      "#wvDaily .wvd-wr{flex:none;min-width:26px;text-align:center;font:800 11px var(--font-body);color:var(--red-text,#FF6B6B);border:1px solid var(--red-text,#FF6B6B);border-radius:99px;padding:1px 6px}",
+      "#wvDaily .wvd-allsel{flex:none;border:1px solid var(--border-light);background:var(--surface-raised);color:var(--text);border-radius:12px;padding:0 14px;font:700 13px var(--font-body);cursor:pointer}#wvDaily .wvd-allsel:disabled{opacity:.3}",
+      "#wvDaily .wvd-item.td-done{background:rgba(48,209,88,.14);box-shadow:inset 3px 0 0 #30D158}#wvDaily .wvd-item.td-done .wvd-w{color:#4CE39A}#wvDaily .wvd-item.td-done .wvd-m{color:rgba(76,227,154,.75)}",
+      "#wvDaily .wvd-item.td-new{box-shadow:inset 3px 0 0 rgba(255,255,255,.18)}#wvDaily .wvd-item.td-new .wvd-w{color:var(--text)}",
+      "#wvDaily .wvd-item.td-done.sel,#wvDaily .wvd-item.td-new.sel{box-shadow:inset 3px 0 0 #fff}",
+      "#wvDaily .wvd-cats{display:block;overflow:visible;padding:4px 14px 6px!important}#wvDaily .wvd-cs{display:inline-flex;gap:2px;padding:2px;border-radius:999px;border:1.5px solid rgba(255,255,255,.28);background:rgba(255,255,255,.04)}",
+      "#wvDaily .wvd-cs .wvd-chip{border:0!important;background:transparent!important;color:rgba(255,255,255,.65)!important;padding:4px 12px;font-size:11px;border-radius:999px}#wvDaily .wvd-cs .wvd-chip.on{background:#fff!important;color:#000!important;font-weight:800!important}",
+      "#wvDaily .wvd-search{transition:width .22s ease}#wvDaily .wvd-tools.sc{flex:1 0 100%;justify-content:flex-start}#wvDaily .wvd-tools.sc .wvd-search{flex:none;width:30px}",
+      "#wvDaily .wvd-tools.sc .wvd-search input{padding:0;color:transparent;caret-color:transparent;cursor:pointer;background:transparent}#wvDaily .wvd-tools.sc .wvd-search input::placeholder{color:transparent}",
+      "#wvDaily .wvd-tools.sc .wvd-search svg{left:50%;transform:translate(-50%,-50%);color:var(--text2);width:16px;height:16px}",
       "@media (prefers-reduced-motion:reduce){#wvDaily,#wvDaily *{animation-duration:.001ms !important;transition-duration:.001ms !important}}"
     ].join('');
     document.head.appendChild(st);
@@ -15284,21 +15778,25 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
   function renderCtl(){
     var el = $('wvdCtl'); if (!el) return;
     var cl = cats();
-    var h = '<div class="wvd-seg" data-pos="' + (ui.tab === 'today' ? 0 : 1) + '"><button class="' + (ui.tab === 'today' ? 'on' : '') + '" data-a="tab" data-v="today">Hari ini</button><button class="' + (ui.tab === 'hist' ? 'on' : '') + '" data-a="tab" data-v="hist">Riwayat</button></div>';
+    var TABS = [['today', 'Hari ini'], ['hafal', 'Hafal'], ['salah', 'Sering salah']], pi = 0;
+    TABS.forEach(function(t, i){ if (t[0] === ui.tab) pi = i; });
+    var h = '<div class="wvd-seg" style="--n:3" data-pos="' + pi + '">' + TABS.map(function(t){ return '<button class="' + (ui.tab === t[0] ? 'on' : '') + '" data-a="tab" data-v="' + t[0] + '">' + t[1] + '</button>'; }).join('') + '</div>';
     el.innerHTML = h;
     var ce = $('wvdCats');
-    if (ce) ce.innerHTML = cl.length > 1 ? cl.map(function(c){ return '<button class="wvd-chip' + (c.id === ui.cat ? ' on' : '') + '" data-a="cat" data-v="' + esc(c.id) + '">' + esc(c.name) + '</button>'; }).join('') : '';
+    if (ce) {
+      var ci = 0; cl.forEach(function(c, i){ if (c.id === ui.cat) ci = i; });
+      ce.innerHTML = cl.length > 1 ? '<div class="wvd-seg" style="--n:' + cl.length + '" data-pos="' + ci + '" role="group" aria-label="Jenis daftar">' + cl.map(function(c){ return '<button class="' + (c.id === ui.cat ? 'on' : '') + '" data-a="cat" data-v="' + esc(c.id) + '">' + esc(c.name) + '</button>'; }).join('') + '</div>' : '';
+    }
   }
   // Ringkasan progres: satu baris tipis
   function renderTop(){
     var el = $('wvdTop'); if (!el) return;
     var h = '';
     if (ui.tab === 'today') {
-      var keys = sessionKeys(ui.cat), done = doneToday(), nH = 0, nD = 0;
-      keys.forEach(function(k){ if (mastered(k)) nH++; else if (done.indexOf(k) !== -1) nD++; });
-      var fin = nH + nD, tot = keys.length, pct = tot ? Math.round(fin / tot * 100) : 0;
-      if (tot) h = '<div class="wvd-sum"><div class="wvd-line"><span><b>' + fin + '</b>/' + tot + ' selesai</span><span>' + nH + ' hafal \u00b7 ' + (tot - fin) + ' belum</span></div><div class="wvd-bar"><i style="width:' + pct + '%"></i></div></div>';
-      else h = '<div class="wvd-sum"><div class="wvd-line"><span>Sesi belum dimulai</span></div></div>';
+      h = '';
+    } else if (ui.tab === 'hafal' || ui.tab === 'salah') {
+      var nk = count(rawGroups());
+      h = '<div class="wvd-sum"><div class="wvd-line"><span><b>' + nk + '</b> kata ' + (ui.tab === 'hafal' ? 'hafal' : 'sering salah') + '</span><span>' + (ui.tab === 'hafal' ? 'urut A\u2013Z' : 'salah \u2265 ' + WRONG_MIN + '\u00d7 \u00b7 terbanyak dulu') + '</span></div></div>';
     } else {
       var rg = rawGroups(), nw = count(rg);
       h = '<div class="wvd-sum"><div class="wvd-line"><span><b>' + nw + '</b> kata</span><span>' + rg.length + ' hari terakhir</span></div></div>';
@@ -15320,19 +15818,24 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
     if (!n) {
       var searching = ui.q.trim().length > 0;
       if (searching) h = '<div class="wvd-empty"><div class="ic">' + SV.search + '</div><b>Tidak ditemukan</b>Tidak ada kata yang cocok dengan \u201c' + esc(ui.q.trim()) + '\u201d.</div>';
-      else if (ui.tab === 'today') h = '<div class="wvd-empty"><div class="ic">' + SV.book + '</div><b>Sesi hari ini belum dimulai</b>Daftar kata dibuat saat kamu mulai belajar. Mau lihat daftarnya dulu?<br><button class="wvd-chip on" data-a="prep">Tampilkan kata hari ini</button></div>';
+      else if (ui.tab === 'hafal') h = '<div class="wvd-empty"><div class="ic">' + SV.star + '</div><b>Belum ada kata hafal</b>Kata naik jadi hafal setelah diulang beberapa kali di sesi belajar.</div>';
+      else if (ui.tab === 'salah') h = '<div class="wvd-empty"><div class="ic">' + SV.check + '</div><b>Belum ada kata yang sering salah</b>Kata yang salah ' + WRONG_MIN + '\u00d7 atau lebih di mode apa pun akan muncul di sini.</div>';
+      else if (ui.tab === 'today') h = '<div class="wvd-empty"><div class="ic">' + SV.book + '</div><b>Belum ada kata untuk hari ini</b>Tambahkan kata dulu, atau semua kata di daftar ini sudah hafal.</div>';
       else h = '<div class="wvd-empty"><div class="ic">' + SV.book + '</div><b>Belum ada riwayat</b>Kata yang kamu jawab di sesi belajar akan tercatat di sini, per hari.</div>';
     } else {
       var done = doneToday(), delay = 0;
       gs.forEach(function(g, gi){
-        h += (ui.tab === 'today' && gs.length === 1 ? '' : '<div class="wvd-gh"><span>' + (g.today ? '<b>Hari ini</b> \u00b7 ' : '') + esc(dateShort(g.date)) + ' \u00b7 ' + g.keys.length + ' kata</span>'
+        h += (ui.tab !== 'hist' && gs.length === 1 ? '' : '<div class="wvd-gh"><span>' + (g.today ? '<b>Hari ini</b> \u00b7 ' : '') + esc(dateShort(g.date)) + ' \u00b7 ' + g.keys.length + ' kata</span>'
           + (ui.tab === 'hist' ? '<button class="wvd-mini" data-a="copyday" data-v="' + gi + '">Salin</button>' : '') + '</div>') + '<div class="wvd-card" style="animation-delay:' + (delay < 200 ? delay : 200) + 'ms">';
         g.keys.forEach(function(k, i){
           var f = info(k), st = '';
-          if (mastered(k)) st = '<div class="wvd-st hf" title="Hafal">' + SV.star + '</div>';
+          var tdCls = '';
+          if (ui.tab === 'today') { st = ''; tdCls = (done.indexOf(k) !== -1 || mastered(k)) ? ' td-done' : ' td-new'; }
+          else if (ui.tab === 'salah') st = '<div class="wvd-wr" title="Jumlah salah">' + wrongOf(k) + '\u00d7</div>';
+          else if (mastered(k)) st = '<div class="wvd-st hf" title="Hafal">' + SV.star + '</div>';
           else if (ui.tab === 'hist' || (g.today && done.indexOf(k) !== -1)) st = '<div class="wvd-st ok" title="Dipelajari">' + SV.check + '</div>';
           else st = '<div class="wvd-st no"></div>';
-          h += '<button class="wvd-item" data-a="one" data-g="' + gi + '" data-i="' + i + '"><div class="wvd-n">' + (i + 1) + '</div><div class="wvd-t"><div class="wvd-w">' + esc(f.word)
+          h += '<button class="wvd-item' + tdCls + (ui.selMode && ui.sel[k] ? ' sel' : '') + '" data-a="one" data-g="' + gi + '" data-i="' + i + '"><div class="wvd-n">' + (ui.selMode ? '<span class="wvd-ck"><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg></span>' : (i + 1)) + '</div><div class="wvd-t"><div class="wvd-w">' + esc(f.word)
             + (f.pron ? '<em>' + esc(f.pron) + '</em>' : '') + (f.pos ? '<u>' + esc(f.pos) + '</u>' : '') + '</div>'
             + (f.meaning ? '<div class="wvd-m">' + esc(f.meaning) + '</div>' : '') + '</div>' + st + '</button>';
         });
@@ -15344,8 +15847,11 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
   }
   function renderFoot(){
     var el = $('wvdFoot'); if (!el) return;
-    var n = count(groups()), lbl = (ui.q.trim() ? 'Salin hasil' : 'Salin semua') + (n ? ' (' + n + ')' : '');
-    el.innerHTML = '<button class="wvd-copy" id="wvdCopy" data-a="copy" data-lbl="' + esc(lbl) + '"' + (n ? '' : ' disabled') + '>' + SV.copy + '<span class="lbl">' + esc(lbl) + '</span></button>'
+    var n = count(activeGroups()), cnt = n ? ' (' + n + ')' : '';
+    var lbl = ui.selMode ? 'Salin terpilih' + cnt : (ui.q.trim() ? 'Salin hasil' : 'Salin semua') + cnt;
+    var ks = allKeys(), allOn = ks.length && ks.every(function(k){ return ui.sel[k]; });
+    var selAllBtn = ui.selMode ? '<button class="wvd-allsel" data-a="selall"' + (ks.length ? '' : ' disabled') + '>' + (allOn ? 'Lepas' : 'Semua') + '</button>' : '';
+    el.innerHTML = selAllBtn + '<button class="wvd-copy" id="wvdCopy" data-a="copy" data-lbl="' + esc(lbl) + '"' + (n ? '' : ' disabled') + '>' + SV.copy + '<span class="lbl">' + esc(lbl) + '</span></button>'
       + '<button class="wvd-share" data-a="share" aria-label="Bagikan ke Catatan atau aplikasi lain" title="Bagikan"' + (n ? '' : ' disabled') + '>' + SV.share + '</button>';
   }
   function renderAll(){
@@ -15354,6 +15860,7 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
       var cur = 'kata'; try { cur = currentDailyCategory(); } catch(e){}
       ui.cat = cl.some(function(c){ return c.id === cur; }) ? cur : 'kata';
     }
+    skMemo = {};
     renderSub(); renderCtl(); renderTop(); renderOpts(); renderList(); renderFoot();
   }
 
@@ -15364,16 +15871,19 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
     var b = e.target.closest ? e.target.closest('[data-a]') : null; if (!b) return;
     var a = b.getAttribute('data-a'), v = b.getAttribute('data-v');
     if (a === 'close') close();
-    else if (a === 'cat') { ui.cat = v; buzz(6); renderAll(); }
-    else if (a === 'tab') { ui.tab = v; buzz(6); var sc = $('wvdScroll'); if (sc) sc.scrollTop = 0; renderAll(); }
+    else if (a === 'cat') { ui.cat = v; ui.sel = {}; buzz(6); renderAll(); }
+    else if (a === 'tab') { ui.tab = v; ui.sel = {}; buzz(6); var sc = $('wvdScroll'); if (sc) sc.scrollTop = 0; renderAll(); }
     else if (a === 'mean') { ui.meaning = !ui.meaning; savePrefs(); renderOpts(); }
     else if (a === 'fmt') { ui.fmt = v; savePrefs(); renderOpts(); }
-    else if (a === 'copy') doCopy(groups());
+    else if (a === 'copy') doCopy(activeGroups());
+    else if (a === 'selmode') { ui.selMode = !ui.selMode; ui.sel = {}; buzz(6); var sb = $('wvdSelBtn'); if (sb) sb.classList.toggle('on', ui.selMode); renderList(); renderFoot(); }
+    else if (a === 'selall') { var ks2 = allKeys(), on2 = ks2.length && ks2.every(function(k){ return ui.sel[k]; }); ks2.forEach(function(k){ if (on2) delete ui.sel[k]; else ui.sel[k] = 1; }); buzz(6); renderList(); renderFoot(); }
     else if (a === 'share') doShare();
     else if (a === 'copyday') doCopy([groups()[+v]], true);
     else if (a === 'one') {
       var g = groups()[+b.getAttribute('data-g')], k = g && g.keys[+b.getAttribute('data-i')];
-      if (k != null) { var f = info(k); copyText(ui.meaning && f.meaning ? f.word + ' \u2014 ' + f.meaning : f.word).then(function(ok){ if (ok) { buzz(10); toast('Disalin: ' + f.word); b.classList.add('cp'); setTimeout(function(){ b.classList.remove('cp'); }, 450); } }); }
+      if (k != null && ui.selMode) { if (ui.sel[k]) delete ui.sel[k]; else ui.sel[k] = 1; buzz(6); renderList(); renderFoot(); }
+      else if (k != null) { var f = info(k); copyText(ui.meaning && f.meaning ? f.word + ' \u2014 ' + f.meaning : f.word).then(function(ok){ if (ok) { buzz(10); toast('Disalin: ' + f.word); b.classList.add('cp'); setTimeout(function(){ b.classList.remove('cp'); }, 450); } }); }
     }
     else if (a === 'clr') { ui.q = ''; var inp = $('wvdQ'); if (inp) { inp.value = ''; inp.focus(); } $('wvdClr').classList.remove('show'); renderList(); renderFoot(); }
     else if (a === 'prep') { try { getDailyWords(ui.cat); } catch(err){ console.warn(err); } renderAll(); }
@@ -15395,22 +15905,24 @@ wvAfter('updateHome', function() { try { hv3Render(); } catch(e) {} });
     if (!o || o.classList.contains('out')) return;
     o.classList.add('out'); setTimeout(function(){ if (o.parentNode) o.remove(); }, 210);
   }
-  window.wvOpenDaily = function(){
+  window.wvOpenDaily = function(tab){
     var old = $('wvDaily'); if (old) old.remove();
     css(); buzz(6);
-    ui.tab = 'today'; ui.cat = null; ui.q = '';
+    ui.tab = (tab === 'hafal' || tab === 'salah') ? tab : 'today'; ui.cat = null; ui.q = ''; ui.selMode = false; ui.sel = {}; skMemo = {};
     var o = document.createElement('div'); o.id = 'wvDaily';
     o.innerHTML = '<div class="wvd-sheet" id="wvdSheet" role="dialog" aria-modal="true" aria-label="Daftar kosakata harian">'
       + '<div class="wvd-dragzone" id="wvdDrag"><div class="wvd-grab"><i></i></div>'
       + '<div class="wvd-head"><div><div class="wvd-title">Kosakata Harian</div><div class="wvd-sub" id="wvdSub"></div></div><button class="wvd-x" data-a="close" aria-label="Tutup">' + SV.x + '</button></div></div>'
-      + '<div class="wvd-row"><div class="wvd-ctl" id="wvdCtl"></div>'
-      + '<div class="wvd-tools"><div class="wvd-search">' + SV.search + '<input id="wvdQ" type="search" placeholder="Cari kata / arti\u2026" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="wvd-clr" id="wvdClr" data-a="clr" aria-label="Hapus pencarian">' + SV.x + '</button></div></div></div>'
       + '<div class="wvd-cats" id="wvdCats"></div>'
+      + '<div class="wvd-row"><div class="wvd-ctl" id="wvdCtl"></div>'
+      + '<div class="wvd-tools sc" id="wvdTools"><div class="wvd-search">' + SV.search + '<input id="wvdQ" type="search" placeholder="Cari kata / arti\u2026" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"><button class="wvd-clr" id="wvdClr" data-a="clr" aria-label="Hapus pencarian">' + SV.x + '</button></div><button class="wvd-selbtn" id="wvdSelBtn" data-a="selmode" aria-label="Pilih beberapa" title="Pilih beberapa"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><path d="M8 12.5l3 3 5-6"/></svg></button></div></div>'
       + '<div class="wvd-top" id="wvdTop"></div>'
       + '<div class="wvd-scroll" id="wvdScroll"><div class="wvd-list" id="wvdList"></div></div>'
       + '<div class="wvd-foot"><div class="wvd-status" id="wvdStatus" role="status" aria-live="polite"><span class="ic">' + SV.check + '</span><span class="t">' + IDLE_MSG + '</span></div><div class="wvd-opts" id="wvdOpts"></div><div class="wvd-btns" id="wvdFoot"></div></div></div>';
     o.addEventListener('click', onClick);
     o.addEventListener('input', onInput);
+    o.addEventListener('focusin', function(e){ if (e.target && e.target.id === 'wvdQ') { var t = $('wvdTools'); if (t) t.classList.remove('sc'); } });
+    o.addEventListener('focusout', function(e){ if (e.target && e.target.id === 'wvdQ' && !e.target.value) { var t = $('wvdTools'); if (t) t.classList.add('sc'); } });
     document.body.appendChild(o);
     document.addEventListener('keydown', onKey);
     bindDrag($('wvdDrag'), $('wvdSheet'));
